@@ -279,4 +279,5 @@ em { color: var(--yellow); font-style: normal; }
 .educational-payoff { align-self: stretch; margin-top: 13px; padding: 10px 12px; border: 2px solid rgba(87,216,211,.55); color: var(--paper); background: rgba(8,27,50,.28); text-align: left; }
 .educational-payoff span { color: var(--cyan); font-size: 8px; font-weight: 700; letter-spacing: .1em; }
 .educational-payoff p { margin-top: 5px; color: rgba(248,240,215,.72); font-size: 10px; line-height: 1.4; }
+.project-link { align-self: stretch; display: flex; align-items: center; justify-content: space-between; min-height: 44px; margin-top: 9px; padding: 0 10px; border: 1px solid rgba(87,216,211,.42); color: var(--cyan); font-size: 9px; font-weight: 700; text-decoration: none; }.project-link span { color: var(--yellow); font-size: 17px; }
 .result-scene .educational-payoff + .full-button { margin-top: 16px; }

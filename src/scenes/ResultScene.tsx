@@ -96,6 +96,7 @@ export function ResultScene({ onReturn }: ResultSceneProps) {
       <ProgressBar value={newHealth} label="СОСТОЯНИЕ БЕРЕГА" />
       <div className="result-reward"><span className="reward-star">✦</span><div><span>РЕЗУЛЬТАТ ЭКСПЕДИЦИИ</span><strong>{state.resultApplied ? '+120 XP' : '...'}</strong></div></div>
       {state.resultApplied && <div className="educational-payoff"><span>ЧИСТЫЙ БЕРЕГ / ДЗЗ</span><p>Спутниковые снимки помогают выбрать точку для полевой работы; в реальном проекте к данным добавляются исследования побережья и снимки БПЛА.</p></div>}
+      {state.resultApplied && <a className="project-link" href="https://защитиприроду.рф/chistyi-bereg" target="_blank" rel="noreferrer">Узнать о проекте «Чистый берег» <span>↗</span></a>}
       <button className="primary-button full-button" type="button" onClick={onReturn} disabled={!state.resultApplied}>{state.resultApplied ? 'Вернуться к берегу' : 'Обновляем зону…'} <span>→</span></button>
     </main>
   )

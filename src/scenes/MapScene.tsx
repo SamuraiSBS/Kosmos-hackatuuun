@@ -29,6 +29,18 @@ export function MapScene({ onToast, onOpenAnalysis }: MapSceneProps) {
     dispatch({ type: 'SELECT_ZONE', zoneId })
   }
 
+  const openStation = () => {
+    if (!state.introCompleted) {
+      onToast('Сначала установи связь с помощником и открой сигнал на карте.')
+      return
+    }
+    if (!state.missionCompleted && !state.selectedZone) {
+      onToast('Сначала открой подсвеченную зону: данные ДЗЗ нужны до полевого выезда.')
+      return
+    }
+    onOpenAnalysis()
+  }
+
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     const target = event.target as HTMLElement
     if (target.closest('button')) return
@@ -65,7 +77,7 @@ export function MapScene({ onToast, onOpenAnalysis }: MapSceneProps) {
             if (object.id.startsWith('tree')) return <GameAsset key={object.id} asset={object.asset} showLabel={false} className={`map-decor tree-object tree-${object.size ?? 'medium'}`} style={style} />
             if (object.id === 'driftwood') return <GameAsset key={object.id} asset={object.asset} showLabel={false} className="map-decor debris-object" style={style} />
             if (object.id === 'ranger-post') return <button key={object.id} className="map-building ranger-post-object" type="button" style={style} onClick={() => onToast('Полевой штаб волонтёров готовит выезд.') }><GameAsset asset="ranger-post" /></button>
-            return <button key={object.id} className="map-building station-object" type="button" style={style} onClick={onOpenAnalysis}><GameAsset asset="satellite-station" /></button>
+            return <button key={object.id} className="map-building station-object" type="button" style={style} onClick={openStation}><GameAsset asset="satellite-station" /></button>
           })}
           {mapZones.map((zone) => (
             <Field
