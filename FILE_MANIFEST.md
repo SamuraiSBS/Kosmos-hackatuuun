@@ -1,0 +1,32 @@
+# FILE_MANIFEST
+
+Файлы пакета:
+
+- `00_README_FIRST.md`
+- `01_MASTER_BOOTSTRAP_PROMPT.md`
+- `AGENTS.md`
+- `docs/ASSET_REQUESTS.md`
+- `docs/AUTONOMOUS_LOOP.md`
+- `docs/BACKLOG.md`
+- `docs/CASE_SOURCE.md`
+- `docs/DECISIONS.md`
+- `docs/DEMO_FLOW.md`
+- `docs/DESIGN_PRINCIPLES.md`
+- `docs/GIT_POLICY.md`
+- `docs/HACKATHON_STRATEGY.md`
+- `docs/HACKATHON_TIMEBOX.md`
+- `docs/PRODUCT_VISION.md`
+- `docs/QA_CHECKLIST.md`
+- `docs/QUALITY_SCORECARD.md`
+- `docs/STATE_OF_PROJECT.md`
+- `original/INITIAL_MVP_PLAN.md`
+- `prompts/RESUME_ORCHESTRATOR.md`
+- `prompts/agents/CASE_REVIEWER.md`
+- `prompts/agents/DEMO_AGENT.md`
+- `prompts/agents/FRONTEND_ARCHITECT_AGENT.md`
+- `prompts/agents/JURY_AGENT.md`
+- `prompts/agents/PERFORMANCE_AGENT.md`
+- `prompts/agents/PRODUCT_GAME_AGENT.md`
+- `prompts/agents/QA_RED_TEAM_AGENT.md`
+- `prompts/agents/RESEARCH_AGENT.md`
+- `prompts/agents/VISUAL_DIRECTOR_AGENT.md`
