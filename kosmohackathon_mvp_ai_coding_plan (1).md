@@ -1,4 +1,3 @@
-# КосмоХакатон — MVP сайта-игры
 ## Master prompt + план разработки для AI-кодера
 
 > Этот файл нужен как рабочая инструкция для Codex / Claude Code / другой нейросети, которая пишет код.
@@ -147,17 +146,14 @@ Phaser, PixiJS, Three.js и аналогичные библиотеки испо
 
 ```tsx
 if (field.status === "dry") {
-  return <div className="orangeRectangle" />
+  return <div className="orangeRectangle" />;
 }
 ```
 
 Предпочтительный подход:
 
 ```tsx
-<GameAsset
-  assetId="field-dry"
-  fallback="placeholder"
-/>
+<GameAsset assetId="field-dry" fallback="placeholder" />
 ```
 
 Компонент `GameAsset` сам решает, что показывать.
@@ -433,11 +429,7 @@ RESULT
 Состояния:
 
 ```ts
-type FieldState =
-  | "healthy"
-  | "warning"
-  | "critical"
-  | "resolved";
+type FieldState = "healthy" | "warning" | "critical" | "resolved";
 ```
 
 Цвета:
@@ -928,12 +920,7 @@ src/
 Пример:
 
 ```tsx
-<GameAsset
-  id="farm-house"
-  asset="farmHouse"
-  width={96}
-  height={80}
-/>
+<GameAsset id="farm-house" asset="farmHouse" width={96} height={80} />
 ```
 
 Сегодня:
@@ -1044,13 +1031,13 @@ const mapObjects = [
 Поддержать:
 
 ```ts
-interactive: true
+interactive: true;
 ```
 
 и:
 
 ```ts
-onInteract
+onInteract;
 ```
 
 Например:
@@ -1118,7 +1105,7 @@ services/
 API:
 
 ```ts
-getFieldAnalysis(fieldId)
+getFieldAnalysis(fieldId);
 ```
 
 Сегодня:
