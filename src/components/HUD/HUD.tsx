@@ -9,19 +9,18 @@ export function HUD() {
 
   return (
     <header className="hud">
-      <div className="brand-mark" aria-label="Космос Ферма">
+      <div className="brand-mark" aria-label="Чистый берег">
         <span className="brand-orbit" />
-        <span className="brand-name">КОСМОС<br />ФЕРМА</span>
+        <span className="brand-name">ЧИСТЫЙ<br />БЕРЕГ</span>
       </div>
       <div className="hud-stats">
         <div className="xp-stat"><span className="xp-star">✦</span><span><small>ОПЫТ</small><strong>{state.xp} XP</strong></span></div>
-        <ProgressBar label="ЗДОРОВЬЕ ХОЗЯЙСТВА" value={state.farmHealth} />
+        <ProgressBar label="СОСТОЯНИЕ БЕРЕГА" value={state.coastHealth} />
       </div>
       <div className={`mission-strip ${missionDone ? 'mission-done' : ''}`}>
         <span className="mission-kicker">{missionDone ? 'МИССИЯ ВЫПОЛНЕНА' : 'ТЕКУЩАЯ МИССИЯ'}</span>
-        <span className="mission-title">{missionDone ? 'Северное поле стабилизировано' : mission.title}</span>
+        <span className="mission-title">{missionDone ? 'Северная линия очищена' : mission.title}</span>
       </div>
     </header>
   )
 }
-

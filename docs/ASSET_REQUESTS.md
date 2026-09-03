@@ -1,47 +1,51 @@
 # ASSET_REQUESTS — будущие финальные ассеты
 
-## Правило
+Список составлен по фактически видимому demo-flow 2026-09-04. Ассеты не блокируют код: сейчас работают CSS placeholders через assetRegistry.
 
-Финальные ассеты **не являются блокером разработки**. Пока их нет — использовать качественные CSS/SVG/placeholders через заменяемый asset layer.
+## P0 — если художник может дать один короткий набор
 
-Оркестратор обновляет этот документ по мере стабилизации фактической сцены. Не просить художника делать ассет для элемента, который ещё может исчезнуть после следующего redesign.
+### [shore-zone-grid]
 
-## Формат заявки
+- Scene: Map / Analysis / Result
+- Purpose: сделать связь «снимок → загрязнение → очистка» визуально правдоподобной.
+- Visual description: вид сверху на береговую зону с песком, водой и небольшим скоплением пластикового/смешанного мусора; отдельные состояния clear, watch, polluted, restored.
+- Perspective / camera: orthographic top-down, pixel/cozy.
+- Target dimensions / aspect: tile 32×32; сетка 5×5, итог 160×160.
+- Required states: clear, watch, polluted, restored.
+- Transparent background: no for tile; yes for isolated debris details.
+- Replacement target in code: src/game/assetRegistry.ts + FieldTile.
 
-### `[asset-id]`
+### [satellite-shoreline-crop]
 
-- Priority: P0 / P1 / P2
-- Scene:
-- Purpose:
-- Visual description:
-- Perspective / camera:
-- Target dimensions / aspect:
-- Required states:
-- Animation frames, если нужны:
-- Transparent background: yes/no
-- Style constraints:
-- Replacement target in code:
-- Notes:
+- Scene: Analysis
+- Purpose: заменить CSS-сетку в scanner viewport, сохранив overlay сигнала.
+- Visual description: учебно помеченный raster-снимок береговой линии с контрастным участком накопления отходов.
+- Perspective / camera: satellite/top-down; без избыточных подписей внутри картинки.
+- Target dimensions / aspect: 360×240, 3:2.
+- Required states: base image; pollution signal overlay.
+- Transparent background: no.
+- Replacement target in code: scanner viewport; данные по-прежнему идут через getZoneAnalysis.
+- Notes: не выдавать mock snapshot за live imagery без источника и attribution.
 
-## P0
+### [coastal-debris-cluster]
 
-Пока не заполнять предположениями. После первого visual stabilization оркестратор должен проанализировать фактический интерфейс и сформировать список.
+- Scene: Map / Result
+- Purpose: усилить узнаваемость загрязнения и payoff очистки.
+- Visual description: небольшая куча мусора/пластика, читаемая в масштабе mobile.
+- Perspective / camera: top-down three-quarter.
+- Target dimensions / aspect: 64×48.
+- Required states: visible / removed.
+- Transparent background: yes.
+- Replacement target in code: debris-pile in assetRegistry.
 
 ## P1
 
-TBD.
+- [ranger-field-post] — полевой штаб команды, 150×120, top-down pixel building.
+- [orbit-guide] — помощник для intro, 86×98, idle/talk.
+- [satellite-station] — станция связи/ДЗЗ, 150×120, idle/active scan.
+- [volunteer-avatar] — игрок, idle/walk directions, 54×68.
 
 ## P2
 
-TBD.
-
-## По команде пользователя
-
-Если пользователь спрашивает «какие ассеты дать/нарисовать/скинуть?», самостоятельно:
-
-1. открыть текущие сцены;
-2. посмотреть asset registry;
-3. проверить, какие placeholders реально видны в demo;
-4. отсортировать по визуальному impact;
-5. заполнить/обновить этот документ;
-6. дать пользователю краткий список P0 первым.
+- Варианты дюнной растительности, волн, береговых линий и микродекора.
+- Мягкие particle/success sprites, только если не ухудшают performance.

@@ -1,48 +1,48 @@
 import { missions } from './missions'
-import type { FieldId, FieldState, GameAction, GameState } from './types'
+import type { GameAction, GameState, ZoneId, ZoneState } from './types'
 
-const FIELD_SIZE = 5
+const ZONE_SIZE = 5
 
-const createField = (defaultState: FieldState = 'healthy'): FieldState[][] =>
-  Array.from({ length: FIELD_SIZE }, (_, row) =>
-    Array.from({ length: FIELD_SIZE }, (_, column) => {
-      if (defaultState !== 'healthy' || row > 1) return defaultState
-      if (column === 0 || column === 1) return 'critical'
-      if (column === 2) return 'warning'
-      return 'healthy'
+const createZone = (defaultState: ZoneState = 'clear'): ZoneState[][] =>
+  Array.from({ length: ZONE_SIZE }, (_, row) =>
+    Array.from({ length: ZONE_SIZE }, (_, column) => {
+      if (defaultState !== 'clear' || row > 1) return defaultState
+      if (column === 0 || column === 1) return 'polluted'
+      if (column === 2) return 'watch'
+      return 'clear'
     }),
   )
 
 export const initialGameState: GameState = {
   scene: 'LOADING',
   xp: 120,
-  farmHealth: 72,
+  coastHealth: 72,
   currentMission: missions[0].id,
   missionProgress: 'not-started',
-  fieldStates: {
-    'field-a': createField(),
-    'field-b': createField('healthy'),
-    'field-c': createField('healthy'),
+  zoneStates: {
+    'zone-north': createZone(),
+    'zone-west': createZone('clear'),
+    'zone-east': createZone('clear'),
   },
   introCompleted: false,
-  selectedField: null,
+  selectedZone: null,
   analysisCompleted: false,
   selectedDecision: null,
   missionCompleted: false,
   resultApplied: false,
 }
 
-const cloneFieldStates = (fields: Record<FieldId, FieldState[][]>) =>
+const cloneZoneStates = (zones: Record<ZoneId, ZoneState[][]>) =>
   Object.fromEntries(
-    (Object.entries(fields) as [FieldId, FieldState[][]][]).map(([id, rows]) => [id, rows.map((row) => [...row])]),
-  ) as Record<FieldId, FieldState[][]>
+    (Object.entries(zones) as [ZoneId, ZoneState[][]][]).map(([id, rows]) => [id, rows.map((row) => [...row])]),
+  ) as Record<ZoneId, ZoneState[][]>
 
-export const applyResolvedField = (fieldStates: GameState['fieldStates']) => {
-  const next = cloneFieldStates(fieldStates)
-  next['field-a'] = next['field-a'].map((row) =>
+export const applyResolvedZone = (zoneStates: GameState['zoneStates']) => {
+  const next = cloneZoneStates(zoneStates)
+  next['zone-north'] = next['zone-north'].map((row) =>
     row.map((tile) => {
-      if (tile === 'critical') return 'resolved'
-      if (tile === 'warning') return 'healthy'
+      if (tile === 'polluted') return 'restored'
+      if (tile === 'watch') return 'clear'
       return tile
     }),
   )
@@ -60,20 +60,20 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
         currentMission: missions[0].id,
         missionProgress: state.missionCompleted ? 'completed' : 'active',
       }
-    case 'SELECT_FIELD':
+    case 'SELECT_ZONE':
       return {
         ...state,
         scene: 'MISSION',
-        selectedField: action.fieldId,
+        selectedZone: action.zoneId,
         missionProgress: state.missionCompleted ? 'completed' : 'active',
       }
     case 'CLOSE_SHEET':
-      return { ...state, scene: 'MAP', selectedField: null }
+      return { ...state, scene: 'MAP', selectedZone: null }
     case 'OPEN_ANALYSIS':
       return {
         ...state,
         scene: 'ANALYSIS',
-        selectedField: action.fieldId ?? state.selectedField ?? 'field-a',
+        selectedZone: action.zoneId ?? state.selectedZone ?? 'zone-north',
         missionProgress: state.missionCompleted ? 'completed' : 'analyzing',
         analysisCompleted: false,
       }
@@ -92,23 +92,23 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
       return {
         ...state,
         xp: state.xp + missions[0].xp,
-        farmHealth: 86,
-        fieldStates: applyResolvedField(state.fieldStates),
+        coastHealth: 86,
+        zoneStates: applyResolvedZone(state.zoneStates),
         missionProgress: 'completed',
         missionCompleted: true,
         resultApplied: true,
         scene: 'RESULT',
       }
     case 'RETURN_MAP':
-      return { ...state, scene: 'MAP', selectedField: null }
+      return { ...state, scene: 'MAP', selectedZone: null }
     case 'SET_SCENE':
       return { ...state, scene: action.scene }
-    case 'SET_FIELD_STATE':
+    case 'SET_ZONE_STATE':
       return {
         ...state,
-        fieldStates: {
-          ...state.fieldStates,
-          [action.fieldId]: state.fieldStates[action.fieldId].map((row) => row.map(() => action.state)),
+        zoneStates: {
+          ...state.zoneStates,
+          [action.zoneId]: state.zoneStates[action.zoneId].map((row) => row.map(() => action.state)),
         },
       }
     case 'ADD_XP':

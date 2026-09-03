@@ -2,9 +2,9 @@ import { createContext, useContext, useEffect, useReducer, type ReactNode } from
 import { gameReducer, initialGameState } from './gameReducer'
 import type { GameAction, GameState } from './types'
 
-export { applyResolvedField, gameReducer, initialGameState } from './gameReducer'
+export { applyResolvedZone, gameReducer, initialGameState } from './gameReducer'
 
-const STORAGE_KEY = 'kosmos-farm-mvp-state'
+const STORAGE_KEY = 'clean-coast-edu-state'
 const loadGameState = (): GameState => {
   if (typeof window === 'undefined') return initialGameState
   try {
@@ -15,7 +15,7 @@ const loadGameState = (): GameState => {
       ...initialGameState,
       ...parsed,
       scene: parsed.introCompleted ? 'MAP' : 'LOADING',
-      fieldStates: parsed.fieldStates ?? initialGameState.fieldStates,
+      zoneStates: parsed.zoneStates ?? initialGameState.zoneStates,
     }
   } catch {
     return initialGameState

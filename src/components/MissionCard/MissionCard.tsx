@@ -10,13 +10,13 @@ export function MissionsView() {
       <div className="section-heading">
         <span className="eyebrow">ЖУРНАЛ ЭКСПЕДИЦИИ</span>
         <h1>Задания</h1>
-        <p>Наблюдайте за территориями и помогайте хозяйству принимать решения.</p>
+        <p>Наблюдайте за берегом и помогайте полевой команде точнее планировать уборку.</p>
       </div>
       <article className={`mission-card ${state.missionCompleted ? 'is-complete' : ''}`}>
         <div className="mission-card-top"><span className="mission-number">01</span><span className="status-chip">{state.missionCompleted ? 'ГОТОВО' : 'АКТИВНО'}</span></div>
         <h2>{mission.title}</h2>
         <p>{mission.description}</p>
-        <div className="mission-objective"><span>ЦЕЛЬ</span><strong>{state.missionCompleted ? 'Участок стабилизирован' : mission.objective}</strong></div>
+        <div className="mission-objective"><span>ЦЕЛЬ</span><strong>{state.missionCompleted ? 'Зона очищена по данным наблюдения' : mission.objective}</strong></div>
         <div className="mission-reward"><span>НАГРАДА</span><strong>✦ +{mission.xp} XP</strong></div>
       </article>
       <div className="locked-missions">
@@ -28,4 +28,3 @@ export function MissionsView() {
     </div>
   )
 }
-

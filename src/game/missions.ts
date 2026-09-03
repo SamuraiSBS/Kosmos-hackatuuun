@@ -9,17 +9,16 @@ export interface Mission {
 export const missions: Mission[] = [
   {
     id: 'mission-01',
-    title: 'Аномалия на северном поле',
-    description: 'Спутник заметил снижение индекса растительности.',
-    objective: 'Исследуйте северный участок поля.',
+    title: 'Сигнал загрязнения у северной линии',
+    description: 'Снимок ДЗЗ выделил участок береговой линии с необычным сигналом мусора.',
+    objective: 'Исследуйте северную зону берега.',
     xp: 120,
   },
 ]
 
 export const lockedMissions = [
-  { id: 'mission-02', title: 'Тепловой след у реки' },
-  { id: 'mission-03', title: 'Новый сезон посевов' },
+  { id: 'mission-02', title: 'Пластик у устья' },
+  { id: 'mission-03', title: 'След шторма на косе' },
 ]
 
 export const getMission = (id: string | null) => missions.find((mission) => mission.id === id) ?? missions[0]
-

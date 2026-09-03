@@ -7,15 +7,16 @@ export type AssetId =
   | 'npc-helper'
   | 'tree-01'
   | 'tree-02'
-  | 'field-healthy'
-  | 'field-warning'
-  | 'field-critical'
-  | 'field-resolved'
-  | 'house'
+  | 'coast-clear'
+  | 'coast-watch'
+  | 'coast-polluted'
+  | 'coast-restored'
+  | 'ranger-post'
   | 'satellite-station'
   | 'water'
   | 'road'
   | 'grass'
+  | 'debris-pile'
 
 export interface PlaceholderAsset {
   type: 'placeholder'
@@ -32,21 +33,22 @@ export interface ImageAsset {
 export type AssetDefinition = PlaceholderAsset | ImageAsset
 
 export const assetRegistry: Record<AssetId, AssetDefinition> = {
-  'player-idle': { type: 'placeholder', label: 'YOU', accent: 'violet' },
-  'player-walk-up': { type: 'placeholder', label: 'YOU', accent: 'violet' },
-  'player-walk-down': { type: 'placeholder', label: 'YOU', accent: 'violet' },
-  'player-walk-left': { type: 'placeholder', label: 'YOU', accent: 'violet' },
-  'player-walk-right': { type: 'placeholder', label: 'YOU', accent: 'violet' },
-  'npc-helper': { type: 'placeholder', label: 'GUIDE', accent: 'cyan' },
-  'tree-01': { type: 'placeholder', label: 'TREE', accent: 'green' },
-  'tree-02': { type: 'placeholder', label: 'TREE', accent: 'green-dark' },
-  'field-healthy': { type: 'placeholder', label: 'FIELD', accent: 'healthy' },
-  'field-warning': { type: 'placeholder', label: 'FIELD', accent: 'warning' },
-  'field-critical': { type: 'placeholder', label: 'FIELD', accent: 'critical' },
-  'field-resolved': { type: 'placeholder', label: 'FIELD', accent: 'resolved' },
-  house: { type: 'placeholder', label: 'HOUSE', accent: 'house' },
+  'player-idle': { type: 'placeholder', label: 'VOLUNTEER', accent: 'violet' },
+  'player-walk-up': { type: 'placeholder', label: 'VOLUNTEER', accent: 'violet' },
+  'player-walk-down': { type: 'placeholder', label: 'VOLUNTEER', accent: 'violet' },
+  'player-walk-left': { type: 'placeholder', label: 'VOLUNTEER', accent: 'violet' },
+  'player-walk-right': { type: 'placeholder', label: 'VOLUNTEER', accent: 'violet' },
+  'npc-helper': { type: 'placeholder', label: 'ORBIT GUIDE', accent: 'cyan' },
+  'tree-01': { type: 'placeholder', label: 'DUNE', accent: 'green' },
+  'tree-02': { type: 'placeholder', label: 'DUNE', accent: 'green-dark' },
+  'coast-clear': { type: 'placeholder', label: 'CLEAR', accent: 'clear' },
+  'coast-watch': { type: 'placeholder', label: 'WATCH', accent: 'watch' },
+  'coast-polluted': { type: 'placeholder', label: 'DEBRIS', accent: 'polluted' },
+  'coast-restored': { type: 'placeholder', label: 'RESTORED', accent: 'restored' },
+  'ranger-post': { type: 'placeholder', label: 'FIELD TEAM', accent: 'ranger' },
   'satellite-station': { type: 'placeholder', label: 'SAT', accent: 'satellite' },
   water: { type: 'placeholder', label: 'WATER', accent: 'water' },
   road: { type: 'placeholder', label: 'ROAD', accent: 'road' },
-  grass: { type: 'placeholder', label: 'GRASS', accent: 'grass' },
+  grass: { type: 'placeholder', label: 'COASTAL PLANTS', accent: 'grass' },
+  'debris-pile': { type: 'placeholder', label: 'DEBRIS', accent: 'polluted' },
 }

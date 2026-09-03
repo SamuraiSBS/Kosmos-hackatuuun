@@ -52,7 +52,7 @@ export function SpaceScene({ onComplete, onSkip }: SpaceSceneProps) {
       <div className="stars" aria-hidden="true">
         {stars.map((star, index) => <span key={index} style={{ left: star.left, top: star.top, width: star.size, height: star.size, animationDelay: star.delay }} />)}
       </div>
-      <div className="space-label"><span className="eyebrow">ORBITAL MONITORING SYSTEM</span><h1>КОСМОС<br /><em>ФЕРМА</em></h1><p>Сканирование сельскохозяйственных территорий</p></div>
+      <div className="space-label"><span className="eyebrow">ORBITAL EARTH OBSERVATION</span><h1>ЧИСТЫЙ<br /><em>БЕРЕГ</em></h1><p>Наблюдение береговой линии по данным ДЗЗ</p></div>
       <div className="orbit-scene" aria-hidden="true">
         <div className="earth-glow" />
         <div className="earth"><span className="earth-land land-one" /><span className="earth-land land-two" /><span className="earth-land land-three" /><span className="earth-cloud cloud-earth-one" /><span className="earth-cloud cloud-earth-two" /></div>
@@ -60,7 +60,7 @@ export function SpaceScene({ onComplete, onSkip }: SpaceSceneProps) {
       </div>
       <div className="terrain-transition" aria-hidden="true"><span className="terrain-patch patch-one" /><span className="terrain-patch patch-two" /><span className="terrain-water" /></div>
       <div className="cloud-transition" aria-hidden="true"><span className="cloud cloud-one" /><span className="cloud cloud-two" /><span className="cloud cloud-three" /><span className="cloud cloud-four" /></div>
-      <div className="space-status"><span className="status-dot" /> ПЕРЕХОД К СЕКТОРУ 07 <i>•</i> 12 KM</div>
+      <div className="space-status"><span className="status-dot" /> ПЕРЕХОД К БЕРЕГОВОМУ СЕКТОРУ 07 <i>•</i> ДЗЗ</div>
       <button className="skip-button" type="button" onClick={handleSkip}>Пропустить <span>»</span></button>
       <div className="scene-progress"><span /></div>
     </main>

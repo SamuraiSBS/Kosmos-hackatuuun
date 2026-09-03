@@ -30,9 +30,9 @@ export function GameAsset({ asset, className = '', style, showLabel = true, aria
           <span className="tree-trunk" />
         </span>
       )}
-      {asset === 'house' && <span className="house-shape" aria-hidden="true" />}
+      {asset === 'ranger-post' && <span className="ranger-post-shape" aria-hidden="true" />}
       {asset === 'satellite-station' && <span className="station-shape" aria-hidden="true" />}
+      {asset === 'debris-pile' && <span className="debris-shape" aria-hidden="true" />}
     </span>
   )
 }
-

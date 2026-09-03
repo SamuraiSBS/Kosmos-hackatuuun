@@ -1,17 +1,17 @@
 import { describe, expect, it } from 'vitest'
-import { applyResolvedField, gameReducer, initialGameState } from './gameReducer'
+import { applyResolvedZone, gameReducer, initialGameState } from './gameReducer'
 
 describe('game reducer', () => {
-  it('resolves critical and warning tiles without mutating the source', () => {
-    const nextFields = applyResolvedField(initialGameState.fieldStates)
-    const original = initialGameState.fieldStates['field-a']
-    const resolved = nextFields['field-a']
+  it('resolves polluted and watch tiles without mutating the source', () => {
+    const nextZones = applyResolvedZone(initialGameState.zoneStates)
+    const original = initialGameState.zoneStates['zone-north']
+    const resolved = nextZones['zone-north']
 
-    expect(original[0][0]).toBe('critical')
-    expect(original[0][2]).toBe('warning')
-    expect(resolved[0][0]).toBe('resolved')
-    expect(resolved[0][2]).toBe('healthy')
-    expect(resolved[4][4]).toBe('healthy')
+    expect(original[0][0]).toBe('polluted')
+    expect(original[0][2]).toBe('watch')
+    expect(resolved[0][0]).toBe('restored')
+    expect(resolved[0][2]).toBe('clear')
+    expect(resolved[4][4]).toBe('clear')
     expect(resolved).not.toBe(original)
   })
 
@@ -20,23 +20,37 @@ describe('game reducer', () => {
     const repeated = gameReducer(completed, { type: 'APPLY_SUCCESS' })
 
     expect(completed.xp).toBe(240)
-    expect(completed.farmHealth).toBe(86)
+    expect(completed.coastHealth).toBe(86)
     expect(completed.missionCompleted).toBe(true)
     expect(repeated).toBe(completed)
     expect(repeated.xp).toBe(240)
   })
 
-  it('fully resets mission progress and field state', () => {
+  it('keeps the coastal mission sequence explicit', () => {
+    const started = gameReducer(initialGameState, { type: 'COMPLETE_INTRO' })
+    const selected = gameReducer(started, { type: 'SELECT_ZONE', zoneId: 'zone-north' })
+    const analysing = gameReducer(selected, { type: 'OPEN_ANALYSIS' })
+    const found = gameReducer(analysing, { type: 'ANALYSIS_COMPLETE' })
+    const wrong = gameReducer(found, { type: 'MAKE_DECISION', decision: 'ignore', correct: false })
+
+    expect(started.scene).toBe('MAP')
+    expect(selected.scene).toBe('MISSION')
+    expect(analysing.selectedZone).toBe('zone-north')
+    expect(found.missionProgress).toBe('decision')
+    expect(wrong.scene).toBe('DECISION')
+  })
+
+  it('fully resets mission progress and zone state', () => {
     const completed = gameReducer(initialGameState, { type: 'APPLY_SUCCESS' })
     const reset = gameReducer(completed, { type: 'RESET' })
 
     expect(reset.scene).toBe('LOADING')
     expect(reset.xp).toBe(120)
-    expect(reset.farmHealth).toBe(72)
+    expect(reset.coastHealth).toBe(72)
     expect(reset.introCompleted).toBe(false)
     expect(reset.missionCompleted).toBe(false)
     expect(reset.resultApplied).toBe(false)
-    expect(reset.fieldStates['field-a'][0][0]).toBe('critical')
-    expect(reset.fieldStates['field-a'][0][2]).toBe('warning')
+    expect(reset.zoneStates['zone-north'][0][0]).toBe('polluted')
+    expect(reset.zoneStates['zone-north'][0][2]).toBe('watch')
   })
 })

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useGame } from '../game/gameStore'
 import { ProgressBar } from '../components/ProgressBar/ProgressBar'
 import { FieldTile } from '../components/FieldTile/FieldTile'
-import type { FieldState } from '../game/types'
+import type { ZoneState } from '../game/types'
 
 interface ResultSceneProps {
   onReturn: () => void
@@ -12,17 +12,17 @@ const TILE_STEP_MS = 55
 const ANIMATION_START_DELAY_MS = 120
 const ANIMATION_FINISH_DELAY_MS = 180
 
-const cloneField = (field: FieldState[][]): FieldState[][] => field.map((row) => [...row])
+const cloneZone = (zone: ZoneState[][]): ZoneState[][] => zone.map((row) => [...row])
 
-const resolveTile = (state: FieldState): FieldState => {
-  if (state === 'critical') return 'resolved'
-  if (state === 'warning') return 'healthy'
+const resolveTile = (state: ZoneState): ZoneState => {
+  if (state === 'polluted') return 'restored'
+  if (state === 'watch') return 'clear'
   return state
 }
 
-const resolvePreviewTile = (field: FieldState[][], tileIndex: number): FieldState[][] => {
+const resolvePreviewTile = (zone: ZoneState[][], tileIndex: number): ZoneState[][] => {
   let currentIndex = 0
-  return field.map((row) => row.map((tile) => {
+  return zone.map((row) => row.map((tile) => {
     const nextTile = currentIndex === tileIndex ? resolveTile(tile) : tile
     currentIndex += 1
     return nextTile
@@ -32,26 +32,26 @@ const resolvePreviewTile = (field: FieldState[][], tileIndex: number): FieldStat
 export function ResultScene({ onReturn }: ResultSceneProps) {
   const { state, dispatch } = useGame()
   const [tileAnimation, setTileAnimation] = useState(!state.resultApplied)
-  const [previewStates, setPreviewStates] = useState<FieldState[][]>(() => cloneField(state.fieldStates['field-a']))
+  const [previewStates, setPreviewStates] = useState<ZoneState[][]>(() => cloneZone(state.zoneStates['zone-north']))
 
   useEffect(() => {
     if (state.resultApplied) {
-      setPreviewStates(cloneField(state.fieldStates['field-a']))
+      setPreviewStates(cloneZone(state.zoneStates['zone-north']))
       setTileAnimation(false)
       return
     }
 
     let cancelled = false
     let tileIndex = 0
-    const sourceField = cloneField(state.fieldStates['field-a'])
+    const sourceZone = cloneZone(state.zoneStates['zone-north'])
     const timers: number[] = []
 
-    setPreviewStates(sourceField)
+    setPreviewStates(sourceZone)
     setTileAnimation(true)
 
     const animateNextTile = () => {
       if (cancelled) return
-      const totalTiles = sourceField.reduce((total, row) => total + row.length, 0)
+      const totalTiles = sourceZone.reduce((total, row) => total + row.length, 0)
       if (tileIndex >= totalTiles) {
         timers.push(window.setTimeout(() => {
           if (cancelled) return
@@ -75,27 +75,28 @@ export function ResultScene({ onReturn }: ResultSceneProps) {
   }, [dispatch, state.resultApplied])
 
   const oldHealth = 72
-  const newHealth = state.resultApplied ? state.farmHealth : oldHealth
+  const newHealth = state.resultApplied ? state.coastHealth : oldHealth
 
   return (
     <main className={`result-scene scene-page ${tileAnimation ? 'is-updating' : 'is-complete'}`}>
       <div className="result-stars" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span></div>
       <div className="result-badge">{tileAnimation ? 'СИНХРОНИЗАЦИЯ' : 'МИССИЯ ВЫПОЛНЕНА'}</div>
       <div className="result-icon"><span>✓</span></div>
-      <h1>{tileAnimation ? 'Стабилизация<br /><em>участка...</em>' : 'Решение<br /><em>принято</em>'}</h1>
-      <p className="result-subtitle">{tileAnimation ? 'Применяем решение к полю A-04' : 'Состояние участка улучшилось'}</p>
-      <div className="result-field-preview-wrap">
-        <span className="result-preview-label">СОСТОЯНИЕ ПОЛЯ A-04</span>
-        <div className={`result-field-preview ${tileAnimation ? 'is-animating' : ''}`} aria-label="Предпросмотр изменения поля">
-          {previewStates.flatMap((row, rowIndex) => row.map((fieldState, columnIndex) => (
-            <FieldTile key={`${rowIndex}-${columnIndex}`} state={fieldState} index={rowIndex * row.length + columnIndex} />
+      <h1>{tileAnimation ? 'Очистка<br /><em>участка...</em>' : 'Берег<br /><em>чище</em>'}</h1>
+      <p className="result-subtitle">{tileAnimation ? 'Полевой план направлен в зону A-04' : 'Сигнал проверен, зона очищена'}</p>
+      <div className="result-zone-preview-wrap">
+        <span className="result-preview-label">СОСТОЯНИЕ БЕРЕГА / ZONE A-04</span>
+        <div className={`result-zone-preview ${tileAnimation ? 'is-animating' : ''}`} aria-label="Предпросмотр очистки береговой зоны">
+          {previewStates.flatMap((row, rowIndex) => row.map((zoneState, columnIndex) => (
+            <FieldTile key={`${rowIndex}-${columnIndex}`} state={zoneState} index={rowIndex * row.length + columnIndex} />
           )))}
         </div>
       </div>
-      <div className="health-change"><div><span>FARM HEALTH</span><strong>{oldHealth}%</strong></div><div className="health-arrow">→</div><div className="health-new"><span>FARM HEALTH</span><strong>{newHealth}%</strong></div></div>
-      <ProgressBar value={newHealth} label="СОСТОЯНИЕ ХОЗЯЙСТВА" />
-      <div className="result-reward"><span className="reward-star">✦</span><div><span>НАГРАДА ЗА АНАЛИЗ</span><strong>{state.resultApplied ? '+120 XP' : '...'}</strong></div></div>
-      <button className="primary-button full-button" type="button" onClick={onReturn} disabled={!state.resultApplied}>{state.resultApplied ? 'Вернуться на карту' : 'Обновляем поле…'} <span>→</span></button>
+      <div className="health-change"><div><span>БЕРЕГ ДО</span><strong>{oldHealth}%</strong></div><div className="health-arrow">→</div><div className="health-new"><span>БЕРЕГ ПОСЛЕ</span><strong>{newHealth}%</strong></div></div>
+      <ProgressBar value={newHealth} label="СОСТОЯНИЕ БЕРЕГА" />
+      <div className="result-reward"><span className="reward-star">✦</span><div><span>РЕЗУЛЬТАТ ЭКСПЕДИЦИИ</span><strong>{state.resultApplied ? '+120 XP' : '...'}</strong></div></div>
+      {state.resultApplied && <div className="educational-payoff"><span>ЧИСТЫЙ БЕРЕГ / ДЗЗ</span><p>Спутниковые снимки помогают выбрать точку для полевой работы; в реальном проекте к данным добавляются исследования побережья и снимки БПЛА.</p></div>}
+      <button className="primary-button full-button" type="button" onClick={onReturn} disabled={!state.resultApplied}>{state.resultApplied ? 'Вернуться к берегу' : 'Обновляем зону…'} <span>→</span></button>
     </main>
   )
 }

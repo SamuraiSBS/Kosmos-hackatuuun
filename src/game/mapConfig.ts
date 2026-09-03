@@ -1,5 +1,5 @@
 import type { AssetId } from './assetRegistry'
-import type { FieldId } from './types'
+import type { ZoneId } from './types'
 
 export const TILE_SIZE = 32
 export const MAP_TILES = 26
@@ -12,28 +12,28 @@ export interface MapObject {
   size?: 'small' | 'medium' | 'large'
 }
 
-export interface MapFieldConfig {
-  id: FieldId
+export interface MapZoneConfig {
+  id: ZoneId
   label: string
   x: number
   y: number
   locked: boolean
 }
 
-export const mapFields: MapFieldConfig[] = [
-  { id: 'field-b', label: 'ПОЛЕ B', x: 3, y: 3, locked: true },
-  { id: 'field-a', label: 'ПОЛЕ A', x: 10, y: 6, locked: false },
-  { id: 'field-c', label: 'ПОЛЕ C', x: 15, y: 15, locked: true },
+export const mapZones: MapZoneConfig[] = [
+  { id: 'zone-west', label: 'ЗОНА B', x: 3, y: 3, locked: true },
+  { id: 'zone-north', label: 'ЗОНА A', x: 10, y: 6, locked: false },
+  { id: 'zone-east', label: 'ЗОНА C', x: 15, y: 15, locked: true },
 ]
 
 export const mapObjects: MapObject[] = [
-  { id: 'house', asset: 'house', x: 4, y: 4, size: 'large' },
+  { id: 'ranger-post', asset: 'ranger-post', x: 4, y: 4, size: 'large' },
   { id: 'station', asset: 'satellite-station', x: 15, y: 4, size: 'large' },
-  { id: 'water', asset: 'water', x: 2, y: 15, size: 'large' },
+  { id: 'shoreline', asset: 'water', x: 2, y: 15, size: 'large' },
   { id: 'tree-1', asset: 'tree-01', x: 2, y: 3, size: 'medium' },
   { id: 'tree-2', asset: 'tree-02', x: 20, y: 3, size: 'medium' },
   { id: 'tree-3', asset: 'tree-01', x: 21, y: 14, size: 'medium' },
-  { id: 'tree-4', asset: 'tree-02', x: 3, y: 21, size: 'medium' },
+  { id: 'driftwood', asset: 'debris-pile', x: 3, y: 21, size: 'medium' },
   { id: 'tree-5', asset: 'tree-01', x: 20, y: 20, size: 'medium' },
   { id: 'tree-6', asset: 'tree-02', x: 23, y: 9, size: 'small' },
 ]

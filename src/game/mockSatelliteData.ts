@@ -1,9 +1,9 @@
 export interface SatelliteData {
-  fieldId: string
+  zoneId: string
   sector: string
-  vegetation: number
-  moisture: number
-  vegetationChange: number
+  imageCoverage: number
+  debrisSignal: number
+  signalChange: number
   risk: 'Низкий' | 'Средний' | 'Высокий'
   issueTitle: string
   issueDescription: string
@@ -11,17 +11,16 @@ export interface SatelliteData {
 }
 
 export const mockSatelliteData: Record<string, SatelliteData> = {
-  'field-a': {
-    fieldId: 'field-a',
+  'zone-north': {
+    zoneId: 'zone-north',
     sector: 'A-04',
-    vegetation: 72,
-    moisture: 41,
-    vegetationChange: -18,
+    imageCoverage: 68,
+    debrisSignal: 41,
+    signalChange: 18,
     risk: 'Высокий',
-    issueTitle: 'Недостаток влаги',
+    issueTitle: 'Скопление мусора',
     issueDescription:
-      'Спутниковые данные показывают снижение состояния растительности и уровня влажности на северной части участка.',
+      'Учебный слой ДЗЗ выделяет плотный сигнал твёрдых отходов у северной линии берега. Данные помогают выбрать точку для полевого выезда.',
     observation: 'сегодня, 09:42',
   },
 }
-

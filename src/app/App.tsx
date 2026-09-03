@@ -40,7 +40,7 @@ function GameApp() {
 
   const goAnalysis = useCallback(() => {
     if (state.missionCompleted) {
-      showToast('Миссия уже выполнена. Северное поле стабилизировано.')
+      showToast('Миссия уже выполнена. Северная линия очищена.')
       return
     }
     dispatch({ type: 'OPEN_ANALYSIS' })
@@ -84,10 +84,10 @@ function GameApp() {
       case 'MISSION':
         return <>
           <MapScene onToast={showToast} onOpenAnalysis={goAnalysis} />
-          <BottomSheet title="Северный участок" eyebrow="FIELD A-04 / СЕВЕР" onClose={() => dispatch({ type: 'CLOSE_SHEET' })} actionLabel="Провести анализ" onAction={goAnalysis}>
-            <div className="field-alert"><span className="alert-symbol">!</span><div><span>СОСТОЯНИЕ</span><strong>Аномалия обнаружена</strong></div><b>HIGH</b></div>
-            <div className="sheet-facts"><div><span>Последнее наблюдение</span><strong>Сегодня, 09:42</strong></div><div><span>Изменение NDVI</span><strong className="negative">−18%</strong></div></div>
-            <p className="sheet-description">Северные тайлы заметно отличаются от остальной территории. Открой спутниковый сканер, чтобы понять причину.</p>
+          <BottomSheet title="Северная линия" eyebrow="ZONE A-04 / СЕВЕР" onClose={() => dispatch({ type: 'CLOSE_SHEET' })} actionLabel="Открыть анализ ДЗЗ" onAction={goAnalysis}>
+            <div className="signal-alert"><span className="alert-symbol">!</span><div><span>СИГНАЛ ЗАГРЯЗНЕНИЯ</span><strong>Скопление мусора</strong></div><b>HIGH</b></div>
+            <div className="sheet-facts"><div><span>Последнее наблюдение</span><strong>Сегодня, 09:42</strong></div><div><span>Сигнал мусора</span><strong className="negative">+18%</strong></div></div>
+            <p className="sheet-description">Северные ячейки заметно отличаются от остальной береговой линии. Открой слой ДЗЗ, чтобы понять, где планировать полевой выезд.</p>
           </BottomSheet>
         </>
       case 'ANALYSIS':
@@ -113,5 +113,5 @@ function GameApp() {
 }
 
 function ProfileView() {
-  return <main className="profile-view scene-page"><div className="section-heading"><span className="eyebrow">ИССЛЕДОВАТЕЛЬ</span><h1>Профиль</h1><p>Карточка исследователя и достижения появятся после первой экспедиции.</p></div><div className="profile-placeholder"><span className="profile-avatar">◉</span><strong>ПИЛОТ 07</strong><small>СИНХРОНИЗАЦИЯ ПРОФИЛЯ…</small></div></main>
+  return <main className="profile-view scene-page"><div className="section-heading"><span className="eyebrow">ВОЛОНТЁР / ДЗЗ</span><h1>Профиль</h1><p>Карточка исследователя и достижения появятся после первой береговой экспедиции.</p></div><div className="profile-placeholder"><span className="profile-avatar">◉</span><strong>ИССЛЕДОВАТЕЛЬ 07</strong><small>СИНХРОНИЗАЦИЯ ПРОФИЛЯ…</small></div></main>
 }

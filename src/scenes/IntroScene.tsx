@@ -15,10 +15,9 @@ export function IntroScene({ onStart }: IntroSceneProps) {
       </div>
       <div className="dialogue-box">
         <div className="dialogue-top"><span className="dialogue-name">ОРБИТА / ПОМОЩНИК</span><span className="dialogue-signal">▰▰▰</span></div>
-        <div className="dialogue-lines"><p>Связь установлена.</p><p>Спутник обнаружил аномалию на северном участке.</p><p>Проверь поле и выясни, что произошло.</p></div>
+        <div className="dialogue-lines"><p>Связь установлена.</p><p>Спутник обнаружил сигнал скопления мусора у северной линии.</p><p>Открой слой ДЗЗ и помоги полевой команде спланировать уборку.</p></div>
         <button className="primary-button" type="button" onClick={onStart}>Начать экспедицию <span>→</span></button>
       </div>
     </div>
   )
 }
-
