@@ -1,6 +1,6 @@
 # STATE_OF_PROJECT — фактическое состояние
 
-Обновлено: 2026-09-04 00:55 (MSK), после bootstrap-аудита и первой итерации CASE REALIGNMENT.
+Обновлено: 2026-09-04 01:11 (MSK), после bootstrap-аудита и двух проверенных итераций CASE REALIGNMENT.
 
 ## Phase
 
@@ -28,8 +28,9 @@ BUILD / CASE_REALIGNMENT
 - Решение «Спланировать уборку», обратная связь на неверные варианты и повторный выбор.
 - Последствие: tiles polluted/watch переходят в restored/clear, состояние берега 72% → 86%, +120 XP.
 - Образовательный payoff связывает снимок ДЗЗ с планированием полевой работы.
+- Финальный экран ведёт на официальный материал проекта «Чистый берег»; станция ДЗЗ не позволяет случайно обойти mission onboarding.
 - Состояние сохраняется в localStorage; debug mode скрыт без ?debug=true.
-- npm run lint, npm test (5/5) и npm run build проходят.
+- npm run lint, npm test (6/6) и npm run build проходят.
 
 ## What is broken / risky
 
@@ -60,7 +61,7 @@ BUILD / CASE_REALIGNMENT
 ## Test status
 
 - Typecheck/lint: PASS (npm run lint).
-- Unit tests: PASS, 5/5 (npm test -- --run).
+- Unit tests: PASS, 6/6 (npm test -- --run).
 - Production build: PASS (npm run build).
 - Dev server: PASS, Vite отдаёт HTTP 200 на локальном порту.
 - Browser flow: NOT VERIFIED — browser automation недоступна.
@@ -80,4 +81,4 @@ BUILD / CASE_REALIGNMENT
 
 ## Last stable checkpoint
 
-fba0686 — MVP!!!!!!!!!!! (^///^), clean baseline before this realignment iteration.
+0264053 — feat: connect demo result to project continuation, latest verified checkpoint.

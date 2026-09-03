@@ -20,7 +20,7 @@ BUILD / CASE_REALIGNMENT
 | Game Engagement | 7 | Problem → observation → decision → consequence loop works in reducer and UI code. | Only one mission. |
 | First-time Clarity | 7 | Intro clearly says what happened; highlighted zone and CTA chain are explicit. | Must verify no navigation friction in browser. |
 | Mobile UX | 6 | Responsive CSS, safe-area rules and touch-sized controls exist. | No factual viewport walkthrough. |
-| Technical Stability | 9 | Typecheck, 5/5 unit tests and production build pass; no known code crash. | Runtime console not browser-verified. |
+| Technical Stability | 9 | Typecheck, 6/6 unit tests and production build pass; no known code crash. | Runtime console not browser-verified. |
 | Performance | 8 | No new dependency; CSS/DOM placeholders and short timers only. | No device profiling. |
 
 ## Hard gates
