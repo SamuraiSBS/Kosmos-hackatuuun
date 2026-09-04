@@ -40,6 +40,19 @@ describe('game reducer', () => {
     expect(wrong.scene).toBe('DECISION')
   })
 
+  it('does not allow analysis or decisions to bypass the observation step', () => {
+    const beforeIntro = gameReducer(initialGameState, { type: 'OPEN_ANALYSIS' })
+    const afterIntro = gameReducer(gameReducer(initialGameState, { type: 'COMPLETE_INTRO' }), { type: 'OPEN_ANALYSIS' })
+    const beforeAnalysis = gameReducer(
+      gameReducer(gameReducer(initialGameState, { type: 'COMPLETE_INTRO' }), { type: 'SELECT_ZONE', zoneId: 'zone-north' }),
+      { type: 'OPEN_DECISION' },
+    )
+
+    expect(beforeIntro).toBe(initialGameState)
+    expect(afterIntro.scene).toBe('MAP')
+    expect(beforeAnalysis.scene).toBe('MISSION')
+  })
+
   it('fully resets mission progress and zone state', () => {
     const completed = gameReducer(initialGameState, { type: 'APPLY_SUCCESS' })
     const reset = gameReducer(completed, { type: 'RESET' })

@@ -1,6 +1,6 @@
 # DEMO_FLOW — фактический демонстрационный путь
 
-Срез: 2026-09-04 после CASE REALIGNMENT. Кодовый flow реализован; browser-прохождение пока ожидает доступного browser-инструмента.
+Срез: 2026-09-04 после CASE REALIGNMENT и browser/mobile hardening. Flow фактически пройден через EdgeCore walkthrough.
 
 ## Main path
 
@@ -24,7 +24,8 @@
 - Показать слой является обязательным содержательным действием, а не декоративной кнопкой.
 - RETURN_MAP сохраняет очищенные tiles и прогресс.
 - Reset доступен только в ?debug=true и возвращает LOADING/исходную загрязнённую зону.
-- Browser/mobile/console acceptance: не подтверждены фактически в текущем окружении.
+- Browser/mobile acceptance: PASS на 320×844, 360×844, 390×844, 430×844 и 500×844 CSS viewport; map/sheet/analysis/decision/result и returned-map пройдены.
+- Console acceptance: PARTIAL — отдельный CDP stream недоступен; app flow доходит до конца без surfaced app crash, Edge host warnings не считаются app errors.
 
 ## Pacing target
 

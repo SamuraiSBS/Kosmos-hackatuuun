@@ -43,9 +43,13 @@ function GameApp() {
       showToast('Миссия уже выполнена. Северная линия очищена.')
       return
     }
+    if (!state.introCompleted || !state.selectedZone) {
+      showToast('Сначала открой подсвеченную зону: данные ДЗЗ нужны до полевого выезда.')
+      return
+    }
     dispatch({ type: 'OPEN_ANALYSIS' })
     setActiveTab('analysis')
-  }, [dispatch, showToast, state.missionCompleted])
+  }, [dispatch, showToast, state.introCompleted, state.missionCompleted, state.selectedZone])
 
   const returnFromResult = () => {
     goMap()

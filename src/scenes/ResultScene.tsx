@@ -82,7 +82,7 @@ export function ResultScene({ onReturn }: ResultSceneProps) {
       <div className="result-stars" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span></div>
       <div className="result-badge">{tileAnimation ? 'СИНХРОНИЗАЦИЯ' : 'МИССИЯ ВЫПОЛНЕНА'}</div>
       <div className="result-icon"><span>✓</span></div>
-      <h1>{tileAnimation ? 'Очистка<br /><em>участка...</em>' : 'Берег<br /><em>чище</em>'}</h1>
+      <h1>{tileAnimation ? <>Очистка<br /><em>участка...</em></> : <>Берег<br /><em>чище</em></>}</h1>
       <p className="result-subtitle">{tileAnimation ? 'Полевой план направлен в зону A-04' : 'Сигнал проверен, зона очищена'}</p>
       <div className="result-zone-preview-wrap">
         <span className="result-preview-label">СОСТОЯНИЕ БЕРЕГА / ZONE A-04</span>
@@ -95,7 +95,7 @@ export function ResultScene({ onReturn }: ResultSceneProps) {
       <div className="health-change"><div><span>БЕРЕГ ДО</span><strong>{oldHealth}%</strong></div><div className="health-arrow">→</div><div className="health-new"><span>БЕРЕГ ПОСЛЕ</span><strong>{newHealth}%</strong></div></div>
       <ProgressBar value={newHealth} label="СОСТОЯНИЕ БЕРЕГА" />
       <div className="result-reward"><span className="reward-star">✦</span><div><span>РЕЗУЛЬТАТ ЭКСПЕДИЦИИ</span><strong>{state.resultApplied ? '+120 XP' : '...'}</strong></div></div>
-      {state.resultApplied && <div className="educational-payoff"><span>ЧИСТЫЙ БЕРЕГ / ДЗЗ</span><p>Спутниковые снимки помогают выбрать точку для полевой работы; в реальном проекте к данным добавляются исследования побережья и снимки БПЛА.</p></div>}
+      {state.resultApplied && <div className="educational-payoff"><span>ЧИСТЫЙ БЕРЕГ / ДЗЗ</span><p>ДЗЗ помогает выбрать точку для полевой работы. В реальном проекте снимок дополняют исследования берега и БПЛА.</p></div>}
       {state.resultApplied && <a className="project-link" href="https://защитиприроду.рф/chistyi-bereg" target="_blank" rel="noreferrer">Узнать о проекте «Чистый берег» <span>↗</span></a>}
       <button className="primary-button full-button" type="button" onClick={onReturn} disabled={!state.resultApplied}>{state.resultApplied ? 'Вернуться к берегу' : 'Обновляем зону…'} <span>→</span></button>
     </main>

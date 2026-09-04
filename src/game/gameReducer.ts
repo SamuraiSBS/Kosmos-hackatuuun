@@ -70,6 +70,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
     case 'CLOSE_SHEET':
       return { ...state, scene: 'MAP', selectedZone: null }
     case 'OPEN_ANALYSIS':
+      if (!state.introCompleted || (!state.missionCompleted && !state.selectedZone && !action.zoneId)) return state
       return {
         ...state,
         scene: 'ANALYSIS',
@@ -80,8 +81,10 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
     case 'ANALYSIS_COMPLETE':
       return { ...state, analysisCompleted: true, missionProgress: 'decision' }
     case 'OPEN_DECISION':
+      if (!state.analysisCompleted) return state
       return { ...state, scene: 'DECISION', missionProgress: 'decision' }
     case 'MAKE_DECISION':
+      if (!state.analysisCompleted) return state
       return {
         ...state,
         selectedDecision: action.decision,

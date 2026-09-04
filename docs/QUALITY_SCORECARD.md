@@ -1,6 +1,6 @@
 # QUALITY_SCORECARD — живой scorecard
 
-Срез: 2026-09-04 после статического аудита и CASE REALIGNMENT. Browser/visual баллы намеренно не завышены.
+Срез: 2026-09-04 после browser/mobile hardening и полного critical-flow sweep. Console gate намеренно отмечен отдельно.
 
 ## Current phase
 
@@ -10,32 +10,32 @@ BUILD / CASE_REALIGNMENT
 
 | Metric | Score 0–10 | Evidence | Biggest gap |
 |---|---:|---|---|
-| Case Fit | 8 | Runtime copy, map, mission and result now name Чистый берег, берег, загрязнение, полевую работу и ДЗЗ. | Нет browser-подтверждения first-time comprehension. |
-| Demo Readiness | 6 | Full deterministic reducer flow and production build pass. | Critical flow ещё не пройден как пользователь на мобильном экране. |
+| Case Fit | 9 | Browser walkthrough подтверждает береговой problem → DZZ observation → точечную уборку и project CTA. | Нет независимого jury sample. |
+| Demo Readiness | 9 | Critical flow пройден в EdgeCore на 320/360/390/430/500×844, включая returned-map. | Console gate ограничен отсутствием CDP stream. |
 | DZZ Integration | 8 | Async scan + explicit user action Показать слой reveal pollution signal before decision. | Снимок пока CSS/mock, не реальный raster. |
-| Educational Clarity | 8 | Intro, layer explanation, decision feedback and final DZZ payoff form a teachable chain. | Нужна независимая проверка, что текст не перегружает 2–3 минуты. |
-| Wow Effect | 7 | Space-to-shore transition and animated cleanup exist. | Визуальная оценка без screenshots невозможна. |
-| Visual Quality | 7 | Consistent pixel/cozy system and new coastal palette/placeholders. | Browser visual review and 320px checks missing. |
+| Educational Clarity | 9 | First-time intro, layer reveal, decision feedback and compact payoff формируют понятную обучающую цепочку. | Нет независимого jury sample. |
+| Wow Effect | 8 | Orbital dive, interactive signal reveal and animated cleanup фактически видны в screenshots. | Реальные raster assets усилят эффект. |
+| Visual Quality | 8 | Browser visual review подтверждает иерархию, mobile fit и result/payoff на 320–500px. | Реальные raster assets усилят карту. |
 | Originality | 7 | Educational DZZ workflow is presented as a short interactive expedition. | More distinctive coastal observation asset would help. |
 | Game Engagement | 7 | Problem → observation → decision → consequence loop works in reducer and UI code. | Only one mission. |
-| First-time Clarity | 7 | Intro clearly says what happened; highlighted zone and CTA chain are explicit. | Must verify no navigation friction in browser. |
-| Mobile UX | 6 | Responsive CSS, safe-area rules and touch-sized controls exist. | No factual viewport walkthrough. |
-| Technical Stability | 9 | Typecheck, 6/6 unit tests and production build pass; no known code crash. | Runtime console not browser-verified. |
+| First-time Clarity | 9 | Browser walkthrough показывает, что новый пользователь проходит explicit signal → DZZ layer → field action path. | Независимый jury sample. |
+| Mobile UX | 9 | 320/360/390/430/500×844 без наблюдаемого horizontal overflow; CTA и nav помещаются. | Нет device-notch/real-device профилирования. |
+| Technical Stability | 9 | Typecheck, 7/7 unit tests, build и весь EdgeCore flow pass; guards закрывают bypass. | Отдельный CDP console stream недоступен. |
 | Performance | 8 | No new dependency; CSS/DOM placeholders and short timers only. | No device profiling. |
 
 ## Hard gates
 
-- Critical bugs: 0 found statically; browser unknown.
-- Main demo flow: implemented, not browser-verified.
+- Critical bugs: 0 found in static + EdgeCore walkthrough; native host warnings excluded.
+- Main demo flow: PASS in browser walkthrough.
 - Production build: PASS.
-- Console/runtime errors: NOT VERIFIED in browser.
-- Tested primary viewport: HTTP launch only; visual 390×844 not verified.
-- Regression status: static checks pass; visual regression unknown.
+- Console/runtime errors: PARTIAL — app stages pass, but CDP console stream unavailable.
+- Tested primary viewport: PASS at 390×844 CSS viewport; adjacent widths 320/360/430/500 also pass.
+- Regression status: static + screenshot review pass; no app layout/runtime regression found.
 
 ## Next score-changing evidence
 
-1. Browser walkthrough with fresh storage at 390×844.
-2. Screenshots of map, scanner with/without layer, decision, result and returned map.
+1. Optional CDP console capture when an approved browser bridge is available.
+2. One distinctive real coastal raster/SVG asset if it can be added without demo risk.
 3. Independent first-time and jury review.
 
 ## Freeze target
