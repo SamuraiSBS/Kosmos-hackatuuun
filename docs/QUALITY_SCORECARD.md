@@ -12,7 +12,7 @@ BUILD / CASE_REALIGNMENT
 |---|---:|---|---|
 | Case Fit | 9 | Browser walkthrough подтверждает береговой problem → DZZ observation → точечную уборку и project CTA. | Нет независимого jury sample. |
 | Demo Readiness | 9 | Critical flow пройден в EdgeCore на 320/360/390/430/500×844, включая returned-map. | Console gate ограничен отсутствием CDP stream. |
-| DZZ Integration | 8 | Async scan + explicit user action Показать слой reveal pollution signal before decision. | Снимок пока CSS/mock, не реальный raster. |
+| DZZ Integration | 9 | Async scan + explicit Показать слой + visible path «сигнал → точка A-04 → выезд» before decision. | Снимок пока CSS/mock, не реальный raster. |
 | Educational Clarity | 9 | First-time intro, layer reveal, decision feedback and compact payoff формируют понятную обучающую цепочку. | Нет независимого jury sample. |
 | Wow Effect | 8 | Orbital dive, interactive signal reveal and animated cleanup фактически видны в screenshots. | Реальные raster assets усилят эффект. |
 | Visual Quality | 8 | Browser visual review подтверждает иерархию, mobile fit и result/payoff на 320–500px. | Реальные raster assets усилят карту. |

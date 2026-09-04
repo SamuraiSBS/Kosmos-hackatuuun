@@ -51,3 +51,27 @@
 **Why:** повторный заход на localhost после прошлой демонстрации открывал уже выполненное задание и ломал critical demo-flow для жюри.
 
 **Revisit when:** появится отдельный профиль пользователя или явный multi-run progress.
+
+## 2026-09-04 — make observation-to-action explicit
+
+**Decision:** после раскрытия слоя ДЗЗ показывать компактную цепочку «сигнал → точка A-04 → выезд» перед CTA планирования.
+
+**Why:** пользователь должен не только увидеть оранжевые ячейки, но и сразу связать координаты снимка с последующим полевым действием.
+
+**Evidence:** current AnalysisScene flow and case requirement to popularize the educational DZZ workflow.
+
+**Alternatives rejected:** добавить вторую миссию — дороже и увеличивает demo-time без усиления первого объяснения.
+
+**Revisit when:** появится второй тип загрязнения или реальный raster, для которого понадобится отдельная легенда.
+
+## 2026-09-04 — make observation-to-action explicit
+
+**Decision:** после раскрытия слоя ДЗЗ показывать компактную цепочку «сигнал → точка A-04 → выезд» перед CTA планирования.
+
+**Why:** пользователь должен не только увидеть оранжевые ячейки, но и сразу связать координаты снимка с последующим полевым действием.
+
+**Evidence:** current AnalysisScene flow and case requirement to popularize the educational DZZ workflow.
+
+**Alternatives rejected:** добавить вторую миссию — дороже и увеличивает demo-time без усиления первого объяснения.
+
+**Revisit when:** появится второй тип загрязнения или реальный raster, для которого понадобится отдельная легенда.
