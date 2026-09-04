@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" shape-rendering="crispEdges">
+  <defs>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#267b8b"/>
+      <stop offset="1" stop-color="#49a9a4"/>
+    </linearGradient>
+    <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#739d5a"/>
+      <stop offset="1" stop-color="#a5b968"/>
+    </linearGradient>
+    <pattern id="raster-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#f8f0d7" stroke-opacity=".13" stroke-width="1"/>
+    </pattern>
+    <pattern id="dune-lines" width="44" height="18" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)">
+      <path d="M0 9H44" fill="none" stroke="#f8f0d7" stroke-opacity=".2" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="360" fill="#356c58"/>
+  <path d="M0 0H640V120C580 137 546 112 491 130C430 150 401 114 346 132C286 152 252 117 195 142C128 171 75 126 0 153Z" fill="url(#water)"/>
+  <path d="M0 153C75 126 128 171 195 142C252 117 286 152 346 132C401 114 430 150 491 130C546 112 580 137 640 120V181C566 166 535 183 477 171C411 158 385 183 326 169C260 153 221 184 166 174C101 163 65 185 0 193Z" fill="#d3b477"/>
+  <path d="M0 193C65 185 101 163 166 174C221 184 260 153 326 169C385 183 411 158 477 171C535 183 566 166 640 181V360H0Z" fill="url(#land)"/>
+  <path d="M0 193C65 185 101 163 166 174C221 184 260 153 326 169C385 183 411 158 477 171C535 183 566 166 640 181" fill="none" stroke="#f8f0d7" stroke-opacity=".65" stroke-width="3"/>
+  <path d="M0 205C65 197 101 175 166 186C221 196 260 165 326 181C385 195 411 170 477 183C535 195 566 178 640 193V244C563 229 520 245 462 232C398 218 363 245 301 228C239 211 204 245 141 226C90 211 54 233 0 238Z" fill="url(#dune-lines)" opacity=".8"/>
+  <g fill="#2f7555" opacity=".72">
+    <path d="M71 285l18-34 18 34Z"/>
+    <path d="M105 316l23-43 23 43Z"/>
+    <path d="M520 292l18-35 18 35Z"/>
+    <path d="M566 329l22-42 22 42Z"/>
+  </g>
+  <g fill="none" stroke="#f8f0d7" stroke-opacity=".18" stroke-width="3">
+    <path d="M53 270c68-27 109-1 165-18s103-15 158 3 102 5 167-17"/>
+    <path d="M32 306c65-20 110 2 167-13s105-12 156 5 107 1 181-15"/>
+    <path d="M252 44c51 18 100 18 151 0"/>
+    <path d="M305 75c44 14 80 14 122 2"/>
+  </g>
+  <g fill="#9edf74" opacity=".7">
+    <rect x="176" y="252" width="7" height="7"/>
+    <rect x="207" y="296" width="5" height="5"/>
+    <rect x="423" y="269" width="6" height="6"/>
+    <rect x="463" y="312" width="5" height="5"/>
+  </g>
+  <path d="M0 0H640V360H0Z" fill="url(#raster-grid)"/>
+</svg>

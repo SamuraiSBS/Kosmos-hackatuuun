@@ -15,7 +15,7 @@
 
 | Item | Impact | Cost | Risk | Case impact | Demo impact | User clarity impact | Decision |
 |---|---:|---:|---:|---:|---:|---:|---|
-| Подключить один правдоподобный raster/SVG-ассет береговой зоны | 8 | 5 | 4 | 8 | 9 | 7 | Do if asset is available |
+| Подключить один правдоподобный raster/SVG-ассет береговой зоны | 8 | 5 | 4 | 8 | 9 | 7 | DONE: educational SVG fallback; final asset optional |
 | Усилить before/after: добавить явную легенду «сигнал → полевой выезд» | 8 | 3 | 2 | 9 | 8 | 9 | DONE: observation path after DZZ reveal |
 | Улучшить educational payoff и CTA на продолжение обучения | 7 | 3 | 2 | 9 | 7 | 8 | DONE: compact payoff + project CTA |
 | Независимый Jury + Case + QA review | 8 | 2 | 1 | 8 | 8 | 8 | Self-review + browser QA done; delegated review unavailable |

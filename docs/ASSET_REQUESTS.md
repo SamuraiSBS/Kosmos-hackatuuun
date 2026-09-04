@@ -4,6 +4,8 @@
 
 ## P0 — если художник может дать один короткий набор
 
+Текущий scanner уже использует лёгкий учебный SVG-фон `src/assets/coast-satellite.svg` через `assetRegistry`; он не заменяет финальный raster с источником и attribution.
+
 ### [shore-zone-grid]
 
 - Scene: Map / Analysis / Result

@@ -1,3 +1,5 @@
+import coastSatelliteSrc from '../assets/coast-satellite.svg'
+
 export type AssetId =
   | 'player-idle'
   | 'player-walk-up'
@@ -17,6 +19,7 @@ export type AssetId =
   | 'road'
   | 'grass'
   | 'debris-pile'
+  | 'coast-satellite'
 
 export interface PlaceholderAsset {
   type: 'placeholder'
@@ -51,4 +54,5 @@ export const assetRegistry: Record<AssetId, AssetDefinition> = {
   road: { type: 'placeholder', label: 'ROAD', accent: 'road' },
   grass: { type: 'placeholder', label: 'COASTAL PLANTS', accent: 'grass' },
   'debris-pile': { type: 'placeholder', label: 'DEBRIS', accent: 'polluted' },
+  'coast-satellite': { type: 'image', src: coastSatelliteSrc, alt: 'Учебный спутниковый снимок береговой зоны' },
 }

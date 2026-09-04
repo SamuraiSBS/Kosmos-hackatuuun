@@ -64,6 +64,30 @@
 
 **Revisit when:** появится второй тип загрязнения или реальный raster, для которого понадобится отдельная легенда.
 
+## 2026-09-04 — educational shoreline raster fallback
+
+**Decision:** добавить лёгкий стилизованный SVG-растр береговой линии как базовый слой scanner viewport через assetRegistry, оставив цветные ячейки отдельным интерактивным сигналом.
+
+**Why:** текущая CSS-сетка объясняла механику, но выглядела слишком абстрактно для демонстрации ДЗЗ; береговой контекст делает снимок узнаваемее.
+
+**Evidence:** local asset build and dev-server smoke-check; SVG явно описан как учебный снимок и не имитирует live imagery.
+
+**Alternatives rejected:** подключать внешний raster/API — нет проверенного источника, attribution и необходимости для короткого deterministic demo.
+
+**Revisit when:** появится согласованный реальный или финальный ассет с источником и attribution.
+
+## 2026-09-04 — educational shoreline raster fallback
+
+**Decision:** добавить лёгкий стилизованный SVG-растр береговой линии как базовый слой scanner viewport через assetRegistry, оставив цветные ячейки отдельным интерактивным сигналом.
+
+**Why:** текущая CSS-сетка объясняла механику, но выглядела слишком абстрактно для демонстрации ДЗЗ; береговой контекст делает снимок узнаваемее.
+
+**Evidence:** local asset build and dev-server smoke-check; SVG явно описан как учебный снимок и не имитирует live imagery.
+
+**Alternatives rejected:** подключать внешний raster/API — нет проверенного источника, attribution и необходимости для короткого deterministic demo.
+
+**Revisit when:** появится согласованный реальный или финальный ассет с источником и attribution.
+
 ## 2026-09-04 — make observation-to-action explicit
 
 **Decision:** после раскрытия слоя ДЗЗ показывать компактную цепочку «сигнал → точка A-04 → выезд» перед CTA планирования.

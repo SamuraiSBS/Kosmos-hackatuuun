@@ -192,6 +192,8 @@ em { color: var(--yellow); font-style: normal; }
 }
 
 .observation-path { display: flex; align-items: stretch; gap: 5px; margin-top: 12px; padding: 8px 7px; border: 1px solid rgba(87,216,211,.35); background: rgba(8,27,50,.23); }.observation-path-step { display: flex; align-items: center; gap: 5px; min-width: 0; flex: 1 1 0; }.observation-path-step > span { display: grid; place-items: center; flex: 0 0 auto; width: 21px; height: 21px; color: var(--navy); background: rgba(248,240,215,.72); font-size: 8px; font-weight: 900; }.observation-path-step div { display: grid; min-width: 0; gap: 2px; }.observation-path-step strong { overflow: hidden; color: var(--paper); font-size: 8px; letter-spacing: .03em; text-overflow: ellipsis; white-space: nowrap; }.observation-path-step small { color: rgba(248,240,215,.55); font-size: 7px; white-space: nowrap; }.observation-path-step.is-done > span { background: var(--cyan); }.observation-path-step.is-next > span { color: var(--navy); background: var(--yellow); }.observation-path > i { align-self: center; color: var(--yellow); font-size: 13px; font-style: normal; }
+.scanner-raster-base { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; opacity: .82; image-rendering: pixelated; }
+.scanner-viewport::before { z-index: 2; }.sat-image-grid { z-index: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }

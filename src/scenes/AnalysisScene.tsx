@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { getZoneAnalysis, type SatelliteData } from '../services/satelliteService'
 import { useGame } from '../game/gameStore'
 import { FieldTile } from '../components/FieldTile/FieldTile'
+import { GameAsset } from '../components/GameAsset/GameAsset'
 import type { ZoneState } from '../game/types'
 import { getScanPhase, SCAN_TIMINGS } from './scanTimeline'
 
@@ -93,6 +94,7 @@ export function AnalysisScene({ onBack, onChooseDecision }: AnalysisSceneProps) 
       <div className="scanner-title"><span className="eyebrow">ДЗЗ / СЛОЙ НАБЛЮДЕНИЯ</span><h1>Снимок<br /><em>берега</em></h1><span className="sector-id">ЗОНА {displayData?.sector ?? 'A-04'} <i>•</i> СЕВЕР</span></div>
       <section className={`scanner-viewport scan-${phase}`}>
         <div className="scanner-corner corner-tl" /><div className="scanner-corner corner-tr" /><div className="scanner-corner corner-bl" /><div className="scanner-corner corner-br" />
+          <GameAsset asset="coast-satellite" className="scanner-raster-base" />
           <div className="sat-image-grid" aria-label="Учебный спутниковый снимок береговой зоны">
           {grid.flatMap((row, rowIndex) => row.map((tile, columnIndex) => {
             const isProblem = highlighted && rowIndex < 2 && columnIndex < 3
