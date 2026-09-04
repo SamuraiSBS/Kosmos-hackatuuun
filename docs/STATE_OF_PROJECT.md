@@ -88,4 +88,4 @@ DEMO_HARDENING / LIMITED_VALIDATION
 
 ## Last stable checkpoint
 
-eed7b14 — fix: harden coastal mission state flow; latest static-verified checkpoint before DZZ clarity polish.
+f9da373 — fix: harden persisted coastal zone state; latest static-verified checkpoint.
