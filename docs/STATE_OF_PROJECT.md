@@ -85,4 +85,4 @@ DEMO_HARDENING / LIMITED_VALIDATION
 
 ## Last stable checkpoint
 
-ef5bbcf — fix: reset completed demo sessions, persistence verified checkpoint.
+eb7325c — fix: make reducer own decision correctness, latest static-verified checkpoint.
