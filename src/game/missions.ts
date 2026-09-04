@@ -4,6 +4,7 @@ export interface Mission {
   description: string
   objective: string
   xp: number
+  correctDecision: string
 }
 
 export const missions: Mission[] = [
@@ -13,6 +14,7 @@ export const missions: Mission[] = [
     description: 'Снимок ДЗЗ выделил участок береговой линии с необычным сигналом мусора.',
     objective: 'Исследуйте северную зону берега.',
     xp: 120,
+    correctDecision: 'cleanup',
   },
 ]
 

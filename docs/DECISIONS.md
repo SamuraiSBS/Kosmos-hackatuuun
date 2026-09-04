@@ -76,6 +76,16 @@
 
 **Revisit when:** появится согласованный реальный или финальный ассет с источником и attribution.
 
+## 2026-09-04 — reducer owns decision correctness
+
+**Decision:** `MAKE_DECISION` принимает только идентификатор выбранного действия, а правильность вычисляет reducer по `currentMission.correctDecision`.
+
+**Why:** UI-флаг `correct` позволял внешнему dispatch обойти смысл миссии и открыть result для неверного выбора.
+
+**Evidence:** reducer regression test covers both `ignore` and `cleanup`; lint, 10/10 tests and production build pass.
+
+**Revisit when:** появится граф решений для нескольких миссий; правила останутся в mission config, а не в UI.
+
 ## 2026-09-04 — educational shoreline raster fallback
 
 **Decision:** добавить лёгкий стилизованный SVG-растр береговой линии как базовый слой scanner viewport через assetRegistry, оставив цветные ячейки отдельным интерактивным сигналом.

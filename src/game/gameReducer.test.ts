@@ -31,7 +31,7 @@ describe('game reducer', () => {
     const selected = gameReducer(started, { type: 'SELECT_ZONE', zoneId: 'zone-north' })
     const analysing = gameReducer(selected, { type: 'OPEN_ANALYSIS' })
     const found = gameReducer(analysing, { type: 'ANALYSIS_COMPLETE' })
-    const wrong = gameReducer(found, { type: 'MAKE_DECISION', decision: 'ignore', correct: false })
+    const wrong = gameReducer(found, { type: 'MAKE_DECISION', decision: 'ignore' })
 
     expect(started.scene).toBe('MAP')
     expect(selected.scene).toBe('MISSION')
@@ -51,6 +51,21 @@ describe('game reducer', () => {
     expect(beforeIntro).toBe(initialGameState)
     expect(afterIntro.scene).toBe('MAP')
     expect(beforeAnalysis.scene).toBe('MISSION')
+  })
+
+  it('derives the decision result from mission rules, not caller input', () => {
+    const ready = gameReducer(
+      gameReducer(
+        gameReducer(gameReducer(initialGameState, { type: 'COMPLETE_INTRO' }), { type: 'SELECT_ZONE', zoneId: 'zone-north' }),
+        { type: 'OPEN_ANALYSIS' },
+      ),
+      { type: 'ANALYSIS_COMPLETE' },
+    )
+    const wrong = gameReducer(ready, { type: 'MAKE_DECISION', decision: 'ignore' })
+    const right = gameReducer(ready, { type: 'MAKE_DECISION', decision: 'cleanup' })
+
+    expect(wrong.scene).toBe('DECISION')
+    expect(right.scene).toBe('RESULT')
   })
 
   it('fully resets mission progress and zone state', () => {

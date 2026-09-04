@@ -85,10 +85,12 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
       return { ...state, scene: 'DECISION', missionProgress: 'decision' }
     case 'MAKE_DECISION':
       if (!state.analysisCompleted) return state
+      const mission = missions.find((item) => item.id === state.currentMission) ?? missions[0]
+      const isCorrectDecision = action.decision === mission.correctDecision
       return {
         ...state,
         selectedDecision: action.decision,
-        scene: action.correct ? 'RESULT' : 'DECISION',
+        scene: isCorrectDecision ? 'RESULT' : 'DECISION',
       }
     case 'APPLY_SUCCESS':
       if (state.resultApplied) return state

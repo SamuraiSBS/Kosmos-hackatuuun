@@ -17,11 +17,11 @@ export function DecisionScene({ onBack }: DecisionSceneProps) {
 
   const choose = (decision: (typeof decisions)[number]) => {
     if (decision.correct) {
-      dispatch({ type: 'MAKE_DECISION', decision: decision.id, correct: true })
+      dispatch({ type: 'MAKE_DECISION', decision: decision.id })
       return
     }
     setFeedback('Это решение не использует данные наблюдения. Слой ДЗЗ уже показал, где сосредоточен мусор: направь команду точно в зону сигнала.')
-    dispatch({ type: 'MAKE_DECISION', decision: decision.id, correct: false })
+    dispatch({ type: 'MAKE_DECISION', decision: decision.id })
   }
 
   return (

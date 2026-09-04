@@ -27,7 +27,7 @@ export type GameAction =
   | { type: 'OPEN_ANALYSIS'; zoneId?: ZoneId }
   | { type: 'ANALYSIS_COMPLETE' }
   | { type: 'OPEN_DECISION' }
-  | { type: 'MAKE_DECISION'; decision: string; correct: boolean }
+  | { type: 'MAKE_DECISION'; decision: string }
   | { type: 'APPLY_SUCCESS' }
   | { type: 'RETURN_MAP' }
   | { type: 'SET_SCENE'; scene: Scene }
