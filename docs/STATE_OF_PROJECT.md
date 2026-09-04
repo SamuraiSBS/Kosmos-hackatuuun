@@ -67,7 +67,7 @@ DEMO_HARDENING / LIMITED_VALIDATION
 ## Test status
 
 - Typecheck/lint: PASS (npm run lint).
-- Unit tests: PASS, 12/12 (npm test -- --run).
+- Unit tests: PASS, 14/14 (npm test -- --run).
 - Production build: PASS (npm run build).
 - Dev server: PASS, Vite отдаёт HTTP 200 на локальном порту.
 - Browser flow: LIMITED — стандартный browser automation runner недоступен; исторический EdgeCore result не воспроизводился в этой итерации.
