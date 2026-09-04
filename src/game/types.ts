@@ -14,6 +14,7 @@ export interface GameState {
   introCompleted: boolean
   selectedZone: ZoneId | null
   analysisCompleted: boolean
+  observationRevealed: boolean
   selectedDecision: string | null
   missionCompleted: boolean
   resultApplied: boolean
@@ -24,8 +25,9 @@ export type GameAction =
   | { type: 'SKIP_INTRO' }
   | { type: 'SELECT_ZONE'; zoneId: ZoneId }
   | { type: 'CLOSE_SHEET' }
-  | { type: 'OPEN_ANALYSIS'; zoneId?: ZoneId }
+  | { type: 'OPEN_ANALYSIS' }
   | { type: 'ANALYSIS_COMPLETE' }
+  | { type: 'REVEAL_SIGNAL' }
   | { type: 'OPEN_DECISION' }
   | { type: 'MAKE_DECISION'; decision: string }
   | { type: 'APPLY_SUCCESS' }

@@ -39,6 +39,7 @@ export const loadGameState = (): GameState => {
       ...initialGameState,
       ...parsed,
       scene: parsed.introCompleted ? 'MAP' : 'LOADING',
+      observationRevealed: parsed.observationRevealed === true,
       zoneStates: hydrateZoneStates(parsed.zoneStates),
     }
   } catch {

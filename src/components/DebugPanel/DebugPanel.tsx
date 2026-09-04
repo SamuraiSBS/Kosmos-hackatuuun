@@ -9,6 +9,7 @@ export function DebugPanel() {
     dispatch({ type: 'SELECT_ZONE', zoneId: 'zone-north' })
     dispatch({ type: 'OPEN_ANALYSIS' })
     dispatch({ type: 'ANALYSIS_COMPLETE' })
+    dispatch({ type: 'REVEAL_SIGNAL' })
     dispatch({ type: 'OPEN_DECISION' })
     dispatch({ type: 'MAKE_DECISION', decision: 'cleanup' })
   }

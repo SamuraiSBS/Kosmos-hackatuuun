@@ -27,6 +27,7 @@ export const initialGameState: GameState = {
   introCompleted: false,
   selectedZone: null,
   analysisCompleted: false,
+  observationRevealed: false,
   selectedDecision: null,
   missionCompleted: false,
   resultApplied: false,
@@ -71,19 +72,23 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
     case 'CLOSE_SHEET':
       return { ...state, scene: 'MAP', selectedZone: null }
     case 'OPEN_ANALYSIS':
-      if (!state.introCompleted || (!state.missionCompleted && !state.selectedZone && !action.zoneId)) return state
+      if (!state.introCompleted || state.missionCompleted || !state.selectedZone || !['MISSION', 'MAP'].includes(state.scene)) return state
       return {
         ...state,
         scene: 'ANALYSIS',
-        selectedZone: action.zoneId ?? state.selectedZone ?? 'zone-north',
-        missionProgress: state.missionCompleted ? 'completed' : 'analyzing',
+        selectedZone: state.selectedZone,
+        missionProgress: 'analyzing',
         analysisCompleted: false,
+        observationRevealed: false,
       }
     case 'ANALYSIS_COMPLETE':
       if (state.scene !== 'ANALYSIS' || !state.selectedZone || state.missionCompleted) return state
-      return { ...state, analysisCompleted: true, missionProgress: 'decision' }
+      return { ...state, analysisCompleted: true, observationRevealed: false, missionProgress: 'analyzing' }
+    case 'REVEAL_SIGNAL':
+      if (state.scene !== 'ANALYSIS' || !state.analysisCompleted || !state.selectedZone || state.missionCompleted) return state
+      return { ...state, observationRevealed: true, missionProgress: 'decision' }
     case 'OPEN_DECISION':
-      if (state.scene !== 'ANALYSIS' || !state.analysisCompleted) return state
+      if (state.scene !== 'ANALYSIS' || !state.analysisCompleted || !state.observationRevealed) return state
       return { ...state, scene: 'DECISION', missionProgress: 'decision' }
     case 'MAKE_DECISION':
       if (state.scene !== 'DECISION' || !state.analysisCompleted) return state
@@ -108,7 +113,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
         scene: 'RESULT',
       }
     case 'RETURN_MAP':
-      return { ...state, scene: 'MAP', selectedZone: null }
+      return { ...state, scene: 'MAP', selectedZone: null, analysisCompleted: false, observationRevealed: false, selectedDecision: null }
     case 'SET_SCENE':
       if (!['LOADING', 'INTRO', 'MAP'].includes(action.scene)) return state
       return { ...state, scene: action.scene }

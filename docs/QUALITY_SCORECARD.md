@@ -12,7 +12,7 @@ DEMO_HARDENING / LIMITED_VALIDATION
 |---|---:|---|---|
 | Case Fit | 9 | Runtime semantics и historical EdgeCore evidence покрывают береговой problem → DZZ observation → точечную уборку и project CTA. | Current browser recheck и независимый jury sample. |
 | Demo Readiness | 8 | Code flow и историческая EdgeCore запись покрывают critical path; текущий browser runner недоступен для воспроизводимой acceptance. | Browser/mobile recheck и console gate. |
-| DZZ Integration | 9 | Async scan + explicit Показать слой + visible path «сигнал → точка A-04 → выезд» before decision. | Снимок пока CSS/mock, не реальный raster. |
+| DZZ Integration | 9 | Async scan + explicit Показать слой + reducer-level `REVEAL_SIGNAL` guard + visible path «сигнал → точка A-04 → выезд» before decision. | Снимок пока CSS/mock, не реальный raster. |
 | Educational Clarity | 9 | First-time intro, layer reveal, observation path, decision feedback and compact payoff формируют понятную обучающую цепочку. | Current browser/jury review. |
 | Wow Effect | 8 | Orbital dive, interactive signal reveal, SVG shoreline context and animated cleanup реализованы; screenshots остаются historical evidence. | Финальный raster и browser recheck. |
 | Visual Quality | 8 | CSS/SVG visual system и historical screenshot review покрывают иерархию, mobile fit и result/payoff. | Current browser recheck и финальный raster. |
@@ -25,7 +25,7 @@ DEMO_HARDENING / LIMITED_VALIDATION
 
 ## Hard gates
 
-- Critical bugs: 0 found in static checks and historical EdgeCore walkthrough; reducer bypass and malformed-persistence regressions are covered; current browser recheck unavailable.
+- Critical bugs: 0 found in static checks and historical EdgeCore walkthrough; reducer bypass, explicit observation reveal and malformed-persistence regressions are covered; current browser recheck unavailable.
 - Main demo flow: LIMITED — static flow guards pass, but browser walkthrough is not reproducible in current environment.
 - Production build: PASS.
 - Console/runtime errors: LIMITED — current app stages не открыты browser runner'ом, CDP console stream unavailable.

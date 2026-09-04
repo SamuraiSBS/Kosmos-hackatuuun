@@ -22,6 +22,7 @@
 - Flow детерминирован и не зависит от random/API.
 - Неверный выбор не создаёт dead end.
 - Показать слой является обязательным содержательным действием, а не декоративной кнопкой.
+- Reducer не принимает переход к decision только по завершению скана: сначала должен быть зафиксирован `REVEAL_SIGNAL`.
 - RETURN_MAP сохраняет очищенные tiles и прогресс.
 - Reset доступен только в ?debug=true и возвращает LOADING/исходную загрязнённую зону.
 - Browser/mobile acceptance: LIMITED — Chrome/Chromium/Edge и Playwright/Puppeteer недоступны; исторический EdgeCore result не считается текущим воспроизводимым gate.
