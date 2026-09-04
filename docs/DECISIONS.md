@@ -64,6 +64,26 @@
 
 **Revisit when:** появится второй тип загрязнения или реальный raster, для которого понадобится отдельная легенда.
 
+## 2026-09-04 — preserve guarded decision back navigation
+
+**Decision:** разрешить `SET_SCENE: ANALYSIS` только из `DECISION` при завершённом анализе, раскрытом сигнале и выбранной зоне; прямой переход из других сцен по-прежнему отклонять.
+
+**Why:** независимый pre-freeze review обнаружил, что UI-кнопка «← Анализ» была рассинхронизирована с reducer whitelist и визуально не работала.
+
+**Evidence:** regression test added; 15/15 tests, lint, build и Brave/CDP walkthrough с возвратом Decision → Analysis → Decision → Result pass.
+
+**Revisit when:** появится отдельная history/navigation model для нескольких миссий.
+
+## 2026-09-04 — close browser gate with local Brave/CDP
+
+**Decision:** использовать установленный Brave в headless/CDP для воспроизводимого browser/mobile smoke-check, сохранив browser evidence отдельно от unit-тестов.
+
+**Why:** прежний blocker был не продуктовым, а средовым: runner не находился, хотя Chromium-совместимый браузер был доступен по локальному пути.
+
+**Evidence:** 390×844 critical flow, wrong-choice recovery, result/return, storage cleanup, 320/360/390/430/500px no-overflow sweep и console/network gate без ошибок.
+
+**Revisit when:** появится конкретное устройство защиты; тогда повторить короткий smoke-check без изменения deterministic flow.
+
 ## 2026-09-04 — harden the mission state machine
 
 **Decision:** reducer принимает переходы к анализу, решению и результату только из ожидаемых сцен и prerequisite-состояний; закрытые зоны нельзя выбрать прямым dispatch, а `APPLY_SUCCESS` разрешён только после правильного решения.
@@ -78,7 +98,7 @@
 **Why:** новый пользователь должен понять технологию без устного комментария команды; новый экран или лекционный блок увеличил бы demo-time без необходимости.
 **Evidence:** case definition in docs/CASE_SOURCE.md and updated hook/onboarding/analysis copy.
 **Alternatives rejected:** оставить только аббревиатуру — повышает риск непонимания; вынести объяснение в отдельный экран — ухудшает pacing.
-**Revisit when:** появится browser/mobile walkthrough с фактическим readability/overflow evidence.
+**Revisit when:** появится второй тип сигнала, которому понадобится отдельное объяснение ДЗЗ.
 
 ## 2026-09-04 — безопасная гидратация береговых зон
 

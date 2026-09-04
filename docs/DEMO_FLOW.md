@@ -1,6 +1,6 @@
 # DEMO_FLOW — фактический демонстрационный путь
 
-Срез: 2026-09-04 после CASE REALIGNMENT, reducer hardening, DZZ clarity polish и SVG scan layer. Исторический EdgeCore walkthrough сохранён в Git, но в текущем окружении browser/mobile recheck ограничен отсутствием runner.
+Срез: 2026-09-04 после CASE REALIGNMENT, reducer hardening, DZZ clarity polish, SVG scan layer и фактического Brave/CDP walkthrough.
 
 ## Main path
 
@@ -25,9 +25,9 @@
 - Reducer не принимает переход к decision только по завершению скана: сначала должен быть зафиксирован `REVEAL_SIGNAL`.
 - RETURN_MAP сохраняет очищенные tiles и прогресс.
 - Reset доступен только в ?debug=true и возвращает LOADING/исходную загрязнённую зону.
-- Browser/mobile acceptance: LIMITED — Chrome/Chromium/Edge и Playwright/Puppeteer недоступны; исторический EdgeCore result не считается текущим воспроизводимым gate.
-- Console acceptance: LIMITED — отдельный CDP stream недоступен; static checks и HTTP smoke-check не заменяют console walkthrough.
+- Browser/mobile acceptance: PASS — Brave headless/CDP прошёл critical flow на 390×844; sweep 320/360/390/430/500px не выявил горизонтального overflow.
+- Console acceptance: PASS — 0 Runtime exceptions, 0 app console errors и 0 HTTP responses >=400 в финальном walkthrough.
 
 ## Pacing target
 
-Ценность должна быть понятна в первые 30–60 секунд; основной loop — примерно 1.5–3 минуты без учёта повторов и чтения вторичных экранов. Точное время нужно замерить при доступном browser walkthrough.
+Ценность должна быть понятна в первые 30–60 секунд; основной loop — примерно 1.5–3 минуты без учёта повторов и чтения вторичных экранов. Browser walkthrough подтвердил отсутствие loading hang; точное human pacing зависит от чтения карточек и не является freeze-gate.

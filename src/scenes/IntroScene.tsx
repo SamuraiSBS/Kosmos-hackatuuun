@@ -15,7 +15,7 @@ export function IntroScene({ onStart }: IntroSceneProps) {
       </div>
       <div className="dialogue-box">
         <div className="dialogue-top"><span className="dialogue-name">ОРБИТА / ПОМОЩНИК</span><span className="dialogue-signal">▰▰▰</span></div>
-        <div className="dialogue-lines"><p>Связь установлена.</p><p>Спутник нашёл мусор у северной линии.</p><p>ДЗЗ — снимок берега сверху. Открой слой и спланируй выезд команды.</p></div>
+        <div className="dialogue-lines"><p>Связь установлена.</p><p>Спутник нашёл мусор у северной линии.</p><p>ДЗЗ — снимок берега сверху. Это учебная экспедиция проекта «Чистый берег»: открой слой и спланируй выезд команды.</p></div>
         <button className="primary-button" type="button" onClick={onStart}>Начать экспедицию <span>→</span></button>
       </div>
     </div>

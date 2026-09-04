@@ -14,8 +14,8 @@
 ## Runtime
 
 - [x] Приложение запускается с чистого состояния.
-- [ ] Нет runtime crash в текущем browser walkthrough — runner недоступен; историческая EdgeCore запись сохранена отдельно.
-- [ ] Нет необъяснённых console errors — отдельный CDP console stream недоступен; host warnings зафиксированы отдельно.
+- [x] Нет runtime crash в текущем browser walkthrough — Brave headless/CDP flow завершён.
+- [x] Нет необъяснённых console errors — 0 Runtime exceptions, 0 app console errors и 0 HTTP responses >=400.
 - [x] Нет бесконечных loading states.
 - [x] Reset действительно возвращает демонстрацию к началу (reducer test).
 - [x] localStorage сохраняет незавершённый flow, но завершённый run очищается и не ломает повторный demo.
@@ -23,33 +23,33 @@
 
 ## Critical demo flow
 
-- [ ] Intro/hook — browser walkthrough pending.
-- [ ] Переход к побережью — browser walkthrough pending.
-- [ ] Получение/понимание миссии — browser walkthrough pending.
-- [ ] Нахождение проблемной зоны — browser walkthrough pending.
-- [ ] Открытие анализа/ДЗЗ — browser walkthrough pending.
-- [ ] Понимание ключевого наблюдения — browser walkthrough pending.
-- [ ] Decision — browser walkthrough pending.
-- [ ] Неверный выбор не ломает сценарий, если он предусмотрен — browser walkthrough pending.
-- [ ] Правильный выбор приводит к result — browser walkthrough pending.
-- [ ] Состояние мира меняется — browser walkthrough pending.
-- [ ] Прогресс/feedback виден — browser walkthrough pending.
-- [ ] Возврат на карту сохраняет последствия — browser walkthrough pending.
-- [ ] Образовательный payoff понятен — browser walkthrough pending.
+- [x] Intro/hook — Brave headless/CDP walkthrough.
+- [x] Переход к побережью — Brave headless/CDP walkthrough.
+- [x] Получение/понимание миссии — Brave headless/CDP walkthrough.
+- [x] Нахождение проблемной зоны — Brave headless/CDP walkthrough.
+- [x] Открытие анализа/ДЗЗ — Brave headless/CDP walkthrough.
+- [x] Понимание ключевого наблюдения — обязательный слой и observation path.
+- [x] Decision — Brave headless/CDP walkthrough.
+- [x] Неверный выбор не ломает сценарий, если он предусмотрен — feedback оставляет пользователя в decision.
+- [x] Правильный выбор приводит к result — Brave headless/CDP walkthrough.
+- [x] Состояние мира меняется — 72% → 86%, restored tiles.
+- [x] Прогресс/feedback виден — +120 XP и result payoff.
+- [x] Возврат на карту сохраняет последствия — restored zone, completed-run storage cleanup.
+- [x] Образовательный payoff понятен — DZZ → field work → official project CTA.
 
 ## Mobile viewports
 
 Проверить минимум там, где доступно:
 
-- [ ] 320px — runner недоступен
-- [ ] 360px — runner недоступен
-- [ ] 390×844 (primary) — runner недоступен
-- [ ] 430px — runner недоступен
-- [ ] 500px — runner недоступен
+  - [x] 320px — responsive sweep, no horizontal overflow
+  - [x] 360px — responsive sweep, no horizontal overflow
+  - [x] 390×844 (primary) — walkthrough + visual review
+  - [x] 430px — responsive sweep, no horizontal overflow
+  - [x] 500px — responsive sweep, no horizontal overflow
 
 Проверить:
 
-- [ ] Browser/mobile visual checks pending runner: horizontal overflow, bottom navigation, sheets, HUD and readability.
+- [x] Browser/mobile visual checks: no horizontal overflow; bottom navigation, sheet, HUD and readability reviewed at primary viewport.
 - [x] safe areas учтены в layout через env(safe-area-inset-*);
 - [x] touch target около 44px или больше для основных действий;
 - [x] keyboard/focus не применим: экран не содержит ввода;
@@ -57,19 +57,19 @@
 
 ## Visual
 
-- [ ] Понятна иерархия — current browser review pending.
-- [ ] Главная CTA очевидна — current browser review pending.
-- [ ] Нет SaaS-dashboard drift — current browser review pending.
-- [ ] Pixel/cozy язык последовательный — current browser review pending.
-- [ ] Problem/healthy states визуально различимы — current browser review pending.
-- [ ] DZZ scene выглядит технологично, но остаётся частью игры — current browser review pending.
-- [ ] Result визуально ощутим — current browser review pending.
-- [ ] Нет случайного визуального мусора/неуместных emojis, если они конфликтуют со стилем — current browser review pending.
+- [x] Понятна иерархия — visual review Space, analysis, result.
+- [x] Главная CTA очевидна — layer reveal, cleanup plan and return CTA.
+- [x] Нет SaaS-dashboard drift — scene/game presentation remains coherent.
+- [x] Pixel/cozy язык последовательный — CSS/SVG visual system.
+- [x] Problem/healthy states визуально различимы — polluted/watch/restored tiles.
+- [x] DZZ scene выглядит технологично, но остаётся частью игры — scanner + orbital language.
+- [x] Result визуально ощутим — animated cleanup, 72% → 86%, reward.
+- [x] Нет случайного визуального мусора/неуместных emojis, если они конфликтуют со стилем — symbols are part of the established visual language.
 
 ## Performance
 
-- [ ] Intro performance не переоткрыта в текущем browser walkthrough; историческая EdgeCore запись сохранена.
-- [ ] Map jank не переоценён в текущем browser walkthrough; историческая EdgeCore запись сохранена.
+- [x] Intro performance — browser flow completes without a loading hang or visible crash.
+- [x] Map jank — scripted drag surface and scene transitions complete without runtime issue; separate device profiling is not claimed.
 - [x] Не используются тяжёлые blur/filter/DOM эффекты без необходимости.
 - [x] Анимации не блокируют ввод.
 - [x] Bundle/dependencies не раздуваются без причины.

@@ -96,6 +96,22 @@ describe('game reducer', () => {
     expect(gameReducer(analysed, { type: 'OPEN_DECISION' })).toBe(analysed)
     expect(gameReducer(decision, { type: 'APPLY_SUCCESS' })).toBe(decision)
     expect(gameReducer(initialGameState, { type: 'SET_SCENE', scene: 'RESULT' })).toBe(initialGameState)
+    expect(gameReducer(initialGameState, { type: 'SET_SCENE', scene: 'ANALYSIS' })).toBe(initialGameState)
+  })
+
+  it('allows the decision back button to return to the completed analysis', () => {
+    const started = gameReducer(initialGameState, { type: 'COMPLETE_INTRO' })
+    const selected = gameReducer(started, { type: 'SELECT_ZONE', zoneId: 'zone-north' })
+    const analysing = gameReducer(selected, { type: 'OPEN_ANALYSIS' })
+    const analysed = gameReducer(analysing, { type: 'ANALYSIS_COMPLETE' })
+    const revealed = gameReducer(analysed, { type: 'REVEAL_SIGNAL' })
+    const decision = gameReducer(revealed, { type: 'OPEN_DECISION' })
+    const backToAnalysis = gameReducer(decision, { type: 'SET_SCENE', scene: 'ANALYSIS' })
+
+    expect(backToAnalysis.scene).toBe('ANALYSIS')
+    expect(backToAnalysis.selectedZone).toBe('zone-north')
+    expect(backToAnalysis.analysisCompleted).toBe(true)
+    expect(backToAnalysis.observationRevealed).toBe(true)
   })
 
   it('does not select locked zones through a direct dispatch', () => {

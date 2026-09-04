@@ -1,12 +1,12 @@
 # STATE_OF_PROJECT — фактическое состояние
 
-Обновлено: 2026-09-04 19:10 (MSK), после reducer hardening и DZZ observation guard.
+Обновлено: 2026-09-04 19:39 (MSK), после browser/CDP walkthrough и mobile polish.
 
 ## Phase
 
-DEMO_HARDENING / LIMITED_VALIDATION
+FREEZE
 
-Основной demo-flow собран и фактически пройден; новые изменения теперь оправданы только если заметно усиливают защиту и не повышают риск.
+Основной demo-flow собран, фактически пройден в Brave headless/CDP на 390×844 и проверен на 320/360/390/430/500px; состояние заморожено.
 
 ## Current stack
 
@@ -27,6 +27,7 @@ DEMO_HARDENING / LIMITED_VALIDATION
 - Интерактивное действие «Показать слой»: загрязнённые ячейки появляются на снимке только после действия пользователя.
 - Scanner получил отдельный учебный SVG-растр береговой линии под интерактивной сеткой сигнала; это базовый визуальный контекст, а не live imagery.
 - Решение «Спланировать уборку», обратная связь на неверные варианты и повторный выбор.
+- Кнопка возврата из Decision в Analysis работает только по валидному guarded-переходу и покрыта regression test.
 - Последствие: tiles polluted/watch переходят в restored/clear, состояние берега 72% → 86%, +120 XP.
 - Образовательный payoff связывает снимок ДЗЗ с планированием полевой работы.
 - Финальный экран ведёт на официальный материал проекта «Чистый берег»; станция ДЗЗ не позволяет случайно обойти mission onboarding.
@@ -36,14 +37,16 @@ DEMO_HARDENING / LIMITED_VALIDATION
 - Result-заголовок исправлен на JSX; компактный mobile layout показывает payoff, официальный CTA и возврат на 320–500px.
 - Незавершённое состояние сохраняется в localStorage для безопасного refresh; завершённый demo-run не гидратируется и очищает storage, поэтому новый заход начинается с чистой экспедиции; debug mode скрыт без ?debug=true.
 - Гидратация localStorage нормализует каждую береговую зону как безопасную 5×5-сетку и откатывает повреждённые/устаревшие зоны к исходному состоянию.
-- В репозитории сохранена историческая запись EdgeCore walkthrough для map/sheet/analysis/decision/result; в текущем окружении этот runner недоступен, поэтому browser/mobile acceptance здесь не переобъявляется завершённой.
-- npm run lint, npm test (14/14) и npm run build проходят.
+- В репозитории сохранена историческая запись EdgeCore walkthrough для map/sheet/analysis/decision/result; текущий Brave headless/CDP walkthrough подтвердил тот же critical path.
+- Browser/mobile walkthrough фактически пройден: Space → intro → зона A → sheet → скан → обязательный слой ДЗЗ → неверное решение без dead end → правильное решение → result → возврат на карту.
+- Responsive sweep 320/360/390/430/500px не выявил горизонтального overflow; 390px result CTA заканчивается в пределах viewport после mobile polish.
+- npm run lint, npm test (15/15) и npm run build проходят.
 
 ## What is broken / risky
 
 - Карта, снимок и персонажи остаются CSS placeholders; нет реального спутникового raster/API.
 - Учебные проценты анализа — mock data и должны оставаться обозначенными как учебный снимок.
-- Chrome/Chromium/Edge и Playwright/Puppeteer не обнаружены в текущем окружении; отдельный CDP console stream недоступен. Browser/mobile и console gates остаются ограниченными.
+- Live imagery/API и финальный raster по-прежнему не подключены: scanner явно остаётся учебным SVG/mock-слоем.
 - Legacy CSS имена компонентов (field-*) остались техническими селекторами, но пользовательская семантика и state model уже береговые.
 
 ## Current demo flow
@@ -67,25 +70,24 @@ DEMO_HARDENING / LIMITED_VALIDATION
 ## Test status
 
 - Typecheck/lint: PASS (npm run lint).
-- Unit tests: PASS, 14/14 (npm test -- --run).
+- Unit tests: PASS, 15/15 (npm test -- --run).
 - Production build: PASS (npm run build).
 - Dev server: PASS, Vite отдаёт HTTP 200 на локальном порту.
-- Browser flow: LIMITED — стандартный browser automation runner недоступен; исторический EdgeCore result не воспроизводился в этой итерации.
-- Primary viewport: LIMITED — 390×844 CSS viewport не открыт доступным инструментом в этой итерации.
-- Responsive viewport sweep: LIMITED — 320/360/390/430/500×844 не открыты доступным инструментом в этой итерации.
-- Console errors: PARTIAL — отдельный CDP console stream недоступен; в ходе flow app error overlay/uncaught failure не surfaced, Edge host warnings не относятся к app.
+- Browser flow: PASS — Brave headless/CDP, 390×844, critical path и wrong-choice recovery пройдены.
+- Primary viewport: PASS — 390×844 CSS viewport открыт и визуально проверен на Space, analysis и result.
+- Responsive viewport sweep: PASS — 320/360/390/430/500×844; horizontal overflow не обнаружен.
+- Console errors: PASS — 0 Runtime exceptions, 0 app console errors и 0 HTTP responses >=400 в финальном walkthrough.
 
 ## Current P0
 
-1. Не добавлять рискованные функции до защиты; держать deterministic demo path frozen.
-2. При появлении approved browser/CDP-инструмента повторить browser/mobile flow и console gate.
-3. Проверить, что жюри без устного объяснения считывает: Чистый берег → ДЗЗ → сигнал мусора → точечная уборка.
+1. Не добавлять новые функции до защиты; держать deterministic demo path frozen.
+2. Перед защитой повторить только короткий smoke-check на целевом устройстве, если оно отличается от проверенного viewport.
+3. На защите показать цепочку без дополнительного объяснения: Чистый берег → ДЗЗ → сигнал мусора → точечная уборка.
 
 ## External blockers
 
-- BLOCKED_EXTERNAL: отдельный delegated review отклонён средой (403), а CDP console stream не предоставлен.
-- Это не блокирует статическую разработку и smoke-check, но блокирует объявление browser/mobile acceptance завершённой.
+- BLOCKED_EXTERNAL: отдельный delegated review отклонён средой (403); это не блокирует freeze, так как финальный in-thread jury pass и фактический browser/CDP gate завершены.
 
 ## Last stable checkpoint
 
-7a7c468 — fix: enforce DZZ layer reveal before cleanup decision; latest static-verified checkpoint.
+ca28cd7 — polish: close browser console and mobile gates; latest freeze checkpoint.
