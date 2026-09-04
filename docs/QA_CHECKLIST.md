@@ -14,7 +14,7 @@
 ## Runtime
 
 - [x] Приложение запускается с чистого состояния.
-- [x] Нет runtime crash в фактически пройденном EdgeCore flow.
+- [ ] Нет runtime crash в текущем browser walkthrough — runner недоступен; историческая EdgeCore запись сохранена отдельно.
 - [ ] Нет необъяснённых console errors — отдельный CDP console stream недоступен; host warnings зафиксированы отдельно.
 - [x] Нет бесконечных loading states.
 - [x] Reset действительно возвращает демонстрацию к началу (reducer test).
@@ -22,57 +22,53 @@
 
 ## Critical demo flow
 
-- [x] Intro/hook.
-- [x] Переход к побережью.
-- [x] Получение/понимание миссии.
-- [x] Нахождение проблемной зоны.
-- [x] Открытие анализа/ДЗЗ.
-- [x] Понимание ключевого наблюдения.
-- [x] Decision.
-- [x] Неверный выбор не ломает сценарий, если он предусмотрен.
-- [x] Правильный выбор приводит к result.
-- [x] Состояние мира меняется.
-- [x] Прогресс/feedback виден.
-- [x] Возврат на карту сохраняет последствия.
-- [x] Образовательный payoff понятен.
+- [ ] Intro/hook — browser walkthrough pending.
+- [ ] Переход к побережью — browser walkthrough pending.
+- [ ] Получение/понимание миссии — browser walkthrough pending.
+- [ ] Нахождение проблемной зоны — browser walkthrough pending.
+- [ ] Открытие анализа/ДЗЗ — browser walkthrough pending.
+- [ ] Понимание ключевого наблюдения — browser walkthrough pending.
+- [ ] Decision — browser walkthrough pending.
+- [ ] Неверный выбор не ломает сценарий, если он предусмотрен — browser walkthrough pending.
+- [ ] Правильный выбор приводит к result — browser walkthrough pending.
+- [ ] Состояние мира меняется — browser walkthrough pending.
+- [ ] Прогресс/feedback виден — browser walkthrough pending.
+- [ ] Возврат на карту сохраняет последствия — browser walkthrough pending.
+- [ ] Образовательный payoff понятен — browser walkthrough pending.
 
 ## Mobile viewports
 
 Проверить минимум там, где доступно:
 
-- [x] 320px
-- [x] 360px
-- [x] 390×844 (primary)
-- [x] 430px
-- [x] 500px
+- [ ] 320px — runner недоступен
+- [ ] 360px — runner недоступен
+- [ ] 390×844 (primary) — runner недоступен
+- [ ] 430px — runner недоступен
+- [ ] 500px — runner недоступен
 
 Проверить:
 
-- [x] horizontal overflow не наблюдается на sweep screenshots;
+- [ ] Browser/mobile visual checks pending runner: horizontal overflow, bottom navigation, sheets, HUD and readability.
 - [x] safe areas учтены в layout через env(safe-area-inset-*);
-- [x] bottom navigation;
-- [x] bottom sheets/modals;
-- [x] HUD;
 - [x] touch target около 44px или больше для основных действий;
-- [x] читаемость текста;
 - [x] keyboard/focus не применим: экран не содержит ввода;
 - [x] нет layout shift, мешающего нажатию.
 
 ## Visual
 
-- [x] Понятна иерархия.
-- [x] Главная CTA очевидна.
-- [x] Нет SaaS-dashboard drift.
-- [x] Pixel/cozy язык последовательный.
-- [x] Problem/healthy states визуально различимы.
-- [x] DZZ scene выглядит технологично, но остаётся частью игры.
-- [x] Result визуально ощутим.
-- [x] Нет случайного визуального мусора/неуместных emojis, если они конфликтуют со стилем.
+- [ ] Понятна иерархия — current browser review pending.
+- [ ] Главная CTA очевидна — current browser review pending.
+- [ ] Нет SaaS-dashboard drift — current browser review pending.
+- [ ] Pixel/cozy язык последовательный — current browser review pending.
+- [ ] Problem/healthy states визуально различимы — current browser review pending.
+- [ ] DZZ scene выглядит технологично, но остаётся частью игры — current browser review pending.
+- [ ] Result визуально ощутим — current browser review pending.
+- [ ] Нет случайного визуального мусора/неуместных emojis, если они конфликтуют со стилем — current browser review pending.
 
 ## Performance
 
-- [x] Intro не лагает в EdgeCore walkthrough.
-- [x] Карта не вызывает заметного jank в walkthrough.
+- [ ] Intro performance не переоткрыта в текущем browser walkthrough; историческая EdgeCore запись сохранена.
+- [ ] Map jank не переоценён в текущем browser walkthrough; историческая EdgeCore запись сохранена.
 - [x] Не используются тяжёлые blur/filter/DOM эффекты без необходимости.
 - [x] Анимации не блокируют ввод.
 - [x] Bundle/dependencies не раздуваются без причины.

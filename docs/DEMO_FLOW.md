@@ -1,6 +1,6 @@
 # DEMO_FLOW — фактический демонстрационный путь
 
-Срез: 2026-09-04 после CASE REALIGNMENT и browser/mobile hardening. Flow фактически пройден через EdgeCore walkthrough.
+Срез: 2026-09-04 после CASE REALIGNMENT, DZZ-to-field polish и SVG scan layer. Исторический EdgeCore walkthrough сохранён в Git, но в текущем окружении browser/mobile recheck ограничен отсутствием runner.
 
 ## Main path
 
@@ -24,9 +24,9 @@
 - Показать слой является обязательным содержательным действием, а не декоративной кнопкой.
 - RETURN_MAP сохраняет очищенные tiles и прогресс.
 - Reset доступен только в ?debug=true и возвращает LOADING/исходную загрязнённую зону.
-- Browser/mobile acceptance: PASS на 320×844, 360×844, 390×844, 430×844 и 500×844 CSS viewport; map/sheet/analysis/decision/result и returned-map пройдены.
-- Console acceptance: PARTIAL — отдельный CDP stream недоступен; app flow доходит до конца без surfaced app crash, Edge host warnings не считаются app errors.
+- Browser/mobile acceptance: LIMITED — Chrome/Chromium/Edge и Playwright/Puppeteer недоступны; исторический EdgeCore result не считается текущим воспроизводимым gate.
+- Console acceptance: LIMITED — отдельный CDP stream недоступен; static checks и HTTP smoke-check не заменяют console walkthrough.
 
 ## Pacing target
 
-Ценность должна быть понятна в первые 30–60 секунд; основной loop — примерно 1.5–3 минуты без учёта повторов и чтения вторичных экранов. Точное время нужно замерить в browser walkthrough.
+Ценность должна быть понятна в первые 30–60 секунд; основной loop — примерно 1.5–3 минуты без учёта повторов и чтения вторичных экранов. Точное время нужно замерить при доступном browser walkthrough.
