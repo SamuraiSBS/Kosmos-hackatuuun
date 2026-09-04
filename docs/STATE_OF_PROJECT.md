@@ -31,7 +31,7 @@ DEMO_HARDENING / READY_FOR_HANDOFF
 - Финальный экран ведёт на официальный материал проекта «Чистый берег»; станция ДЗЗ не позволяет случайно обойти mission onboarding.
 - Нижняя навигация и reducer guards не позволяют обойти последовательность сигнал → ДЗЗ → решение.
 - Result-заголовок исправлен на JSX; компактный mobile layout показывает payoff, официальный CTA и возврат на 320–500px.
-- Состояние сохраняется в localStorage; debug mode скрыт без ?debug=true.
+- Незавершённое состояние сохраняется в localStorage для безопасного refresh; завершённый demo-run не гидратируется и очищает storage, поэтому новый заход начинается с чистой экспедиции; debug mode скрыт без ?debug=true.
 - Browser sweep на 320×844, 360×844, 390×844, 430×844 и 500×844 прошёл для map/sheet/analysis/decision/result; returned-map подтверждён на 320 и 390.
 - npm run lint, npm test (7/7) и npm run build проходят.
 

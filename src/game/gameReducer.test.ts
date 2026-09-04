@@ -66,4 +66,5 @@ describe('game reducer', () => {
     expect(reset.zoneStates['zone-north'][0][0]).toBe('polluted')
     expect(reset.zoneStates['zone-north'][0][2]).toBe('watch')
   })
+
 })

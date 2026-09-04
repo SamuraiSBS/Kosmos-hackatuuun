@@ -43,3 +43,11 @@
 **Evidence:** EdgeCore screenshots на 320/360/390/430/500×844, visual review.
 **Alternatives rejected:** оставить обязательный scroll — снижает demo clarity; уменьшать основной текст до нечитаемого размера — ухудшает educational payoff.
 **Revisit when:** появится реальный mobile device profiling или добавится второй result-блок.
+
+## 2026-09-04 — completed run does not persist
+
+**Decision:** сохранять незавершённый flow в localStorage для refresh, но удалять завершённую миссию из storage после начисления результата и игнорировать старый completed payload при загрузке.
+
+**Why:** повторный заход на localhost после прошлой демонстрации открывал уже выполненное задание и ломал critical demo-flow для жюри.
+
+**Revisit when:** появится отдельный профиль пользователя или явный multi-run progress.

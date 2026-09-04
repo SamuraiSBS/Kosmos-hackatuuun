@@ -18,7 +18,7 @@
 - [ ] Нет необъяснённых console errors — отдельный CDP console stream недоступен; host warnings зафиксированы отдельно.
 - [x] Нет бесконечных loading states.
 - [x] Reset действительно возвращает демонстрацию к началу (reducer test).
-- [x] localStorage/persistence не ломает повторный demo.
+- [x] localStorage сохраняет незавершённый flow, но завершённый run очищается и не ломает повторный demo.
 
 ## Critical demo flow
 

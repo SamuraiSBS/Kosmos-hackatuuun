@@ -5,12 +5,18 @@ import type { GameAction, GameState } from './types'
 export { applyResolvedZone, gameReducer, initialGameState } from './gameReducer'
 
 const STORAGE_KEY = 'clean-coast-edu-state'
-const loadGameState = (): GameState => {
+export const isCompletedRun = (state: Partial<GameState>) => Boolean(state.missionCompleted || state.resultApplied)
+
+export const loadGameState = (): GameState => {
   if (typeof window === 'undefined') return initialGameState
   try {
     const saved = window.localStorage.getItem(STORAGE_KEY)
     if (!saved) return initialGameState
     const parsed = JSON.parse(saved) as Partial<GameState>
+    if (isCompletedRun(parsed)) {
+      window.localStorage.removeItem(STORAGE_KEY)
+      return initialGameState
+    }
     return {
       ...initialGameState,
       ...parsed,
@@ -22,8 +28,12 @@ const loadGameState = (): GameState => {
   }
 }
 
-const saveGameState = (state: GameState) => {
+export const saveGameState = (state: GameState) => {
   if (typeof window === 'undefined') return
+  if (isCompletedRun(state)) {
+    window.localStorage.removeItem(STORAGE_KEY)
+    return
+  }
   const { scene: _scene, ...persistentState } = state
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(persistentState))
 }

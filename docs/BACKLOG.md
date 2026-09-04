@@ -8,7 +8,7 @@
 |---|---:|---:|---:|---:|---:|---:|---|
 | Browser walkthrough 390×844 + 320/360/430/500 | 10 | 4 | 3 | 8 | 10 | 10 | DONE: EdgeCore sweep |
 | Исправить найденные runtime/layout regressions и повторить critical flow | 10 | 4 | 4 | 8 | 10 | 10 | DONE: nav/state/result/mobile |
-| Проверить визуальную силу result/payoff и safe reset | 9 | 3 | 3 | 8 | 9 | 8 | DONE: visual + reducer |
+| Проверить визуальную силу result/payoff и safe reset | 9 | 3 | 3 | 8 | 9 | 8 | DONE: visual + reducer + completed-run cleanup |
 | Дочистить технический legacy drift (field-* selectors/filenames), не меняя flow | 5 | 3 | 2 | 4 | 3 | 2 | DEFERRED until browser gate |
 
 ## P1 — после P0
