@@ -92,4 +92,4 @@ FREEZE
 
 ## Last stable checkpoint
 
-c309433 — freeze: lock browser-verified coastal demo; latest freeze checkpoint.
+eae031e — security: remediate vitest ui advisory; latest freeze checkpoint.
