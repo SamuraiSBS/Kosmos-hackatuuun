@@ -1,4 +1,4 @@
-import { missions } from './missions'
+import { getMission, missions } from './missions'
 import type { GameAction, GameState, ZoneId, ZoneState } from './types'
 
 const ZONE_SIZE = 5
@@ -61,6 +61,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
         missionProgress: state.missionCompleted ? 'completed' : 'active',
       }
     case 'SELECT_ZONE':
+      if (state.scene !== 'MAP' || action.zoneId !== 'zone-north' || state.missionCompleted) return state
       return {
         ...state,
         scene: 'MISSION',
@@ -79,13 +80,14 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
         analysisCompleted: false,
       }
     case 'ANALYSIS_COMPLETE':
+      if (state.scene !== 'ANALYSIS' || !state.selectedZone || state.missionCompleted) return state
       return { ...state, analysisCompleted: true, missionProgress: 'decision' }
     case 'OPEN_DECISION':
-      if (!state.analysisCompleted) return state
+      if (state.scene !== 'ANALYSIS' || !state.analysisCompleted) return state
       return { ...state, scene: 'DECISION', missionProgress: 'decision' }
     case 'MAKE_DECISION':
-      if (!state.analysisCompleted) return state
-      const mission = missions.find((item) => item.id === state.currentMission) ?? missions[0]
+      if (state.scene !== 'DECISION' || !state.analysisCompleted) return state
+      const mission = getMission(state.currentMission)
       const isCorrectDecision = action.decision === mission.correctDecision
       return {
         ...state,
@@ -93,10 +95,11 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
         scene: isCorrectDecision ? 'RESULT' : 'DECISION',
       }
     case 'APPLY_SUCCESS':
-      if (state.resultApplied) return state
+      const rewardMission = getMission(state.currentMission)
+      if (state.scene !== 'RESULT' || state.selectedDecision !== rewardMission.correctDecision || state.resultApplied) return state
       return {
         ...state,
-        xp: state.xp + missions[0].xp,
+        xp: state.xp + rewardMission.xp,
         coastHealth: 86,
         zoneStates: applyResolvedZone(state.zoneStates),
         missionProgress: 'completed',
@@ -107,6 +110,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
     case 'RETURN_MAP':
       return { ...state, scene: 'MAP', selectedZone: null }
     case 'SET_SCENE':
+      if (!['LOADING', 'INTRO', 'MAP'].includes(action.scene)) return state
       return { ...state, scene: action.scene }
     case 'SET_ZONE_STATE':
       return {

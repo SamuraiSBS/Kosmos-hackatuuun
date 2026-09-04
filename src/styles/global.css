@@ -101,11 +101,13 @@ em { color: var(--yellow); font-style: normal; }
 .map-compass i { display: block; width: 0; height: 0; margin-top: 2px; border-right: 5px solid transparent; border-bottom: 10px solid var(--orange); border-left: 5px solid transparent; }
 .map-bottom-hint { position: absolute; right: 13px; bottom: 63px; left: 13px; z-index: 3; padding: 7px 10px; color: rgba(248,240,215,.68); font-size: 9px; text-align: center; letter-spacing: .01em; pointer-events: none; }
 .drag-icon { color: var(--cyan); font-size: 14px; }
-.map-legend { position: absolute; bottom: 15px; left: 14px; z-index: 3; display: flex; gap: 11px; padding: 6px 8px; color: var(--paper); font-size: 8px; background: rgba(8,27,50,.68); }
+.map-legend { position: absolute; right: 14px; bottom: 15px; left: 14px; z-index: 3; display: flex; flex-wrap: wrap; gap: 4px 11px; padding: 6px 8px; color: var(--paper); font-size: 8px; background: rgba(8,27,50,.68); }
 .map-legend span { display: flex; align-items: center; gap: 4px; }
 .legend-dot { display: inline-block; width: 7px; height: 7px; border: 1px solid var(--ink); }
 .legend-critical { background: var(--orange); }
+.legend-watch { background: var(--yellow); }
 .legend-healthy { background: var(--mint); }
+.legend-restored { background: #8bd879; }
 .road-tile { position: absolute; z-index: 0; width: 32px; height: 32px; background: #d8b77a; opacity: .9; box-shadow: inset 0 0 0 1px rgba(120,79,55,.18); }
 .road-tile::after { position: absolute; inset: 11px 0; border-top: 2px dotted rgba(129,86,54,.55); content: ""; }
 .map-decor { position: absolute; z-index: 1; }

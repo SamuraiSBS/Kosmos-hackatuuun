@@ -97,7 +97,7 @@ export function MapScene({ onToast, onOpenAnalysis }: MapSceneProps) {
           <div className="player-marker"><GameAsset asset="player-idle" /><span className="player-name">ТЫ</span></div>
         </div>
         <div className="map-bottom-hint"><span className="drag-icon">↔</span> Перетаскивай карту, чтобы осмотреть берег</div>
-        <div className="map-legend"><span><i className="legend-dot legend-critical" /> мусор</span><span><i className="legend-dot legend-healthy" /> чисто</span></div>
+        <div className="map-legend" aria-label="Легенда состояния берега"><span><i className="legend-dot legend-critical" /> сигнал</span><span><i className="legend-dot legend-watch" /> наблюдение</span><span><i className="legend-dot legend-healthy" /> чисто</span><span><i className="legend-dot legend-restored" /> после уборки</span></div>
       </div>
     </div>
   )

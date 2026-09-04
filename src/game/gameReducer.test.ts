@@ -16,13 +16,26 @@ describe('game reducer', () => {
   })
 
   it('awards XP only once', () => {
-    const completed = gameReducer(initialGameState, { type: 'APPLY_SUCCESS' })
-    const repeated = gameReducer(completed, { type: 'APPLY_SUCCESS' })
+    const completed = gameReducer(
+      gameReducer(
+        gameReducer(
+          gameReducer(
+            gameReducer(gameReducer(initialGameState, { type: 'COMPLETE_INTRO' }), { type: 'SELECT_ZONE', zoneId: 'zone-north' }),
+            { type: 'OPEN_ANALYSIS' },
+          ),
+          { type: 'ANALYSIS_COMPLETE' },
+        ),
+        { type: 'OPEN_DECISION' },
+      ),
+      { type: 'MAKE_DECISION', decision: 'cleanup' },
+    )
+    const applied = gameReducer(completed, { type: 'APPLY_SUCCESS' })
+    const repeated = gameReducer(applied, { type: 'APPLY_SUCCESS' })
 
-    expect(completed.xp).toBe(240)
-    expect(completed.coastHealth).toBe(86)
-    expect(completed.missionCompleted).toBe(true)
-    expect(repeated).toBe(completed)
+    expect(applied.xp).toBe(240)
+    expect(applied.coastHealth).toBe(86)
+    expect(applied.missionCompleted).toBe(true)
+    expect(repeated).toBe(applied)
     expect(repeated.xp).toBe(240)
   })
 
@@ -31,12 +44,14 @@ describe('game reducer', () => {
     const selected = gameReducer(started, { type: 'SELECT_ZONE', zoneId: 'zone-north' })
     const analysing = gameReducer(selected, { type: 'OPEN_ANALYSIS' })
     const found = gameReducer(analysing, { type: 'ANALYSIS_COMPLETE' })
-    const wrong = gameReducer(found, { type: 'MAKE_DECISION', decision: 'ignore' })
+    const decision = gameReducer(found, { type: 'OPEN_DECISION' })
+    const wrong = gameReducer(decision, { type: 'MAKE_DECISION', decision: 'ignore' })
 
     expect(started.scene).toBe('MAP')
     expect(selected.scene).toBe('MISSION')
     expect(analysing.selectedZone).toBe('zone-north')
     expect(found.missionProgress).toBe('decision')
+    expect(decision.scene).toBe('DECISION')
     expect(wrong.scene).toBe('DECISION')
   })
 
@@ -61,16 +76,50 @@ describe('game reducer', () => {
       ),
       { type: 'ANALYSIS_COMPLETE' },
     )
-    const wrong = gameReducer(ready, { type: 'MAKE_DECISION', decision: 'ignore' })
-    const right = gameReducer(ready, { type: 'MAKE_DECISION', decision: 'cleanup' })
+    const decision = gameReducer(ready, { type: 'OPEN_DECISION' })
+    const wrong = gameReducer(decision, { type: 'MAKE_DECISION', decision: 'ignore' })
+    const right = gameReducer(decision, { type: 'MAKE_DECISION', decision: 'cleanup' })
 
     expect(wrong.scene).toBe('DECISION')
     expect(right.scene).toBe('RESULT')
   })
 
+  it('rejects direct scene and success bypasses', () => {
+    const started = gameReducer(initialGameState, { type: 'COMPLETE_INTRO' })
+    const selected = gameReducer(started, { type: 'SELECT_ZONE', zoneId: 'zone-north' })
+    const analysing = gameReducer(selected, { type: 'OPEN_ANALYSIS' })
+    const analysed = gameReducer(analysing, { type: 'ANALYSIS_COMPLETE' })
+    const decision = gameReducer(analysed, { type: 'OPEN_DECISION' })
+
+    expect(gameReducer(initialGameState, { type: 'ANALYSIS_COMPLETE' })).toBe(initialGameState)
+    expect(gameReducer(analysed, { type: 'MAKE_DECISION', decision: 'cleanup' })).toBe(analysed)
+    expect(gameReducer(decision, { type: 'APPLY_SUCCESS' })).toBe(decision)
+    expect(gameReducer(initialGameState, { type: 'SET_SCENE', scene: 'RESULT' })).toBe(initialGameState)
+  })
+
+  it('does not select locked zones through a direct dispatch', () => {
+    const started = gameReducer(initialGameState, { type: 'COMPLETE_INTRO' })
+
+    expect(gameReducer(started, { type: 'SELECT_ZONE', zoneId: 'zone-west' })).toBe(started)
+    expect(gameReducer(started, { type: 'SELECT_ZONE', zoneId: 'zone-east' })).toBe(started)
+  })
+
   it('fully resets mission progress and zone state', () => {
-    const completed = gameReducer(initialGameState, { type: 'APPLY_SUCCESS' })
-    const reset = gameReducer(completed, { type: 'RESET' })
+    const completed = gameReducer(
+      gameReducer(
+        gameReducer(
+          gameReducer(
+            gameReducer(gameReducer(initialGameState, { type: 'COMPLETE_INTRO' }), { type: 'SELECT_ZONE', zoneId: 'zone-north' }),
+            { type: 'OPEN_ANALYSIS' },
+          ),
+          { type: 'ANALYSIS_COMPLETE' },
+        ),
+        { type: 'OPEN_DECISION' },
+      ),
+      { type: 'MAKE_DECISION', decision: 'cleanup' },
+    )
+    const applied = gameReducer(completed, { type: 'APPLY_SUCCESS' })
+    const reset = gameReducer(applied, { type: 'RESET' })
 
     expect(reset.scene).toBe('LOADING')
     expect(reset.xp).toBe(120)
