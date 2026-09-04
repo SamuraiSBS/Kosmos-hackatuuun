@@ -20,7 +20,7 @@ BUILD / CASE_REALIGNMENT
 | Game Engagement | 7 | Problem → observation → decision → consequence loop works in reducer and UI code. | Only one mission. |
 | First-time Clarity | 9 | Browser walkthrough показывает, что новый пользователь проходит explicit signal → DZZ layer → field action path. | Независимый jury sample. |
 | Mobile UX | 9 | 320/360/390/430/500×844 без наблюдаемого horizontal overflow; CTA и nav помещаются. | Нет device-notch/real-device профилирования. |
-| Technical Stability | 9 | Typecheck, 7/7 unit tests, build и весь EdgeCore flow pass; guards закрывают bypass. | Отдельный CDP console stream недоступен. |
+| Technical Stability | 9 | Typecheck, 9/9 unit tests, build и весь EdgeCore flow pass; guards закрывают bypass. | Отдельный CDP console stream недоступен. |
 | Performance | 8 | No new dependency; CSS/DOM placeholders and short timers only. | No device profiling. |
 
 ## Hard gates

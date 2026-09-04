@@ -1,6 +1,6 @@
 # STATE_OF_PROJECT — фактическое состояние
 
-Обновлено: 2026-09-04 10:16 (MSK), после browser/mobile hardening и полного critical-flow sweep.
+Обновлено: 2026-09-04 15:31 (MSK), после persistence hardening и полного critical-flow sweep.
 
 ## Phase
 
@@ -63,7 +63,7 @@ DEMO_HARDENING / READY_FOR_HANDOFF
 ## Test status
 
 - Typecheck/lint: PASS (npm run lint).
-- Unit tests: PASS, 6/6 (npm test -- --run).
+- Unit tests: PASS, 9/9 (npm test -- --run).
 - Production build: PASS (npm run build).
 - Dev server: PASS, Vite отдаёт HTTP 200 на локальном порту.
 - Browser flow: PASS — EdgeCore same-origin walkthrough достиг всех стадий без app crash.
@@ -84,4 +84,4 @@ DEMO_HARDENING / READY_FOR_HANDOFF
 
 ## Last stable checkpoint
 
-cb61e25 — fix: harden mobile demo flow, browser/mobile verified checkpoint.
+ef5bbcf — fix: reset completed demo sessions, persistence verified checkpoint.
