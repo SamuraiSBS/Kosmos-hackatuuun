@@ -64,6 +64,22 @@
 
 **Revisit when:** появится второй тип загрязнения или реальный raster, для которого понадобится отдельная легенда.
 
+## 2026-09-04 — harden the mission state machine
+
+**Decision:** reducer принимает переходы к анализу, решению и результату только из ожидаемых сцен и prerequisite-состояний; закрытые зоны нельзя выбрать прямым dispatch, а `APPLY_SUCCESS` разрешён только после правильного решения.
+**Why:** UI guards защищают обычный путь, но внешние dispatch и быстрые/неожиданные действия могли обойти смысловую последовательность или вызвать награду вне миссии.
+**Evidence:** 12/12 unit tests, typecheck, production build и dev HTTP smoke-check.
+**Alternatives rejected:** оставлять guard только в UI — недостаточно для deterministic critical flow; добавлять отдельный debug-only обход — увеличивает поверхность состояния.
+**Revisit when:** появится граф нескольких миссий с отдельными prerequisite-правилами.
+
+## 2026-09-04 — раскрыть ДЗЗ в первом пользовательском опыте
+
+**Decision:** расшифровывать «ДЗЗ» как «дистанционное зондирование Земли» в orbital hook, onboarding и учебном слое, сохранив короткий mobile-first flow.
+**Why:** новый пользователь должен понять технологию без устного комментария команды; новый экран или лекционный блок увеличил бы demo-time без необходимости.
+**Evidence:** case definition in docs/CASE_SOURCE.md and updated hook/onboarding/analysis copy.
+**Alternatives rejected:** оставить только аббревиатуру — повышает риск непонимания; вынести объяснение в отдельный экран — ухудшает pacing.
+**Revisit when:** появится browser/mobile walkthrough с фактическим readability/overflow evidence.
+
 ## 2026-09-04 — educational shoreline raster fallback
 
 **Decision:** добавить лёгкий стилизованный SVG-растр береговой линии как базовый слой scanner viewport через assetRegistry, оставив цветные ячейки отдельным интерактивным сигналом.

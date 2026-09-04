@@ -96,7 +96,7 @@ export function MapScene({ onToast, onOpenAnalysis }: MapSceneProps) {
           <div className="map-grass grass-two"><GameAsset asset="grass" showLabel={false} /></div>
           <div className="player-marker"><GameAsset asset="player-idle" /><span className="player-name">ТЫ</span></div>
         </div>
-        <div className="map-bottom-hint"><span className="drag-icon">↔</span> Перетаскивай карту, чтобы осмотреть берег</div>
+        <div className="map-bottom-hint"><span className="drag-icon">{state.missionCompleted ? '✓' : '!'}</span> {state.missionCompleted ? 'Северная линия очищена · осматривай берег' : 'Открой сигнал мусора · осматривай берег'}</div>
         <div className="map-legend" aria-label="Легенда состояния берега"><span><i className="legend-dot legend-critical" /> сигнал</span><span><i className="legend-dot legend-watch" /> наблюдение</span><span><i className="legend-dot legend-healthy" /> чисто</span><span><i className="legend-dot legend-restored" /> после уборки</span></div>
       </div>
     </div>

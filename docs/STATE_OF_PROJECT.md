@@ -1,6 +1,6 @@
 # STATE_OF_PROJECT — фактическое состояние
 
-Обновлено: 2026-09-04 15:31 (MSK), после persistence hardening и полного critical-flow sweep.
+Обновлено: 2026-09-04 18:52 (MSK), после reducer hardening и DZZ clarity polish.
 
 ## Phase
 
@@ -31,10 +31,12 @@ DEMO_HARDENING / LIMITED_VALIDATION
 - Образовательный payoff связывает снимок ДЗЗ с планированием полевой работы.
 - Финальный экран ведёт на официальный материал проекта «Чистый берег»; станция ДЗЗ не позволяет случайно обойти mission onboarding.
 - Нижняя навигация и reducer guards не позволяют обойти последовательность сигнал → ДЗЗ → решение.
+- Reducer дополнительно отклоняет прямые переходы к decision/result, выбор закрытых зон и небезопасные SET_SCENE; критическая последовательность покрыта регрессионными тестами.
+- Первое объяснение раскрывает ДЗЗ как «дистанционное зондирование Земли» в orbital hook, onboarding и карточке слоя; подсказка карты ведёт к сигналу мусора.
 - Result-заголовок исправлен на JSX; компактный mobile layout показывает payoff, официальный CTA и возврат на 320–500px.
 - Незавершённое состояние сохраняется в localStorage для безопасного refresh; завершённый demo-run не гидратируется и очищает storage, поэтому новый заход начинается с чистой экспедиции; debug mode скрыт без ?debug=true.
 - В репозитории сохранена историческая запись EdgeCore walkthrough для map/sheet/analysis/decision/result; в текущем окружении этот runner недоступен, поэтому browser/mobile acceptance здесь не переобъявляется завершённой.
-- npm run lint, npm test (9/9) и npm run build проходят.
+- npm run lint, npm test (12/12) и npm run build проходят.
 
 ## What is broken / risky
 
@@ -45,7 +47,7 @@ DEMO_HARDENING / LIMITED_VALIDATION
 
 ## Current demo flow
 
-1. Space: ЧИСТЫЙ БЕРЕГ / наблюдение береговой линии по ДЗЗ.
+1. Space: ЧИСТЫЙ БЕРЕГ / дистанционное зондирование Земли (ДЗЗ) показывает берег сверху.
 2. Intro: помощник сообщает о сигнале скопления мусора.
 3. Map: пользователь нажимает подсвеченную ЗОНА A.
 4. Mission sheet: видит Скопление мусора и нажимает Открыть анализ ДЗЗ.
@@ -64,7 +66,7 @@ DEMO_HARDENING / LIMITED_VALIDATION
 ## Test status
 
 - Typecheck/lint: PASS (npm run lint).
-- Unit tests: PASS, 9/9 (npm test -- --run).
+- Unit tests: PASS, 12/12 (npm test -- --run).
 - Production build: PASS (npm run build).
 - Dev server: PASS, Vite отдаёт HTTP 200 на локальном порту.
 - Browser flow: LIMITED — стандартный browser automation runner недоступен; исторический EdgeCore result не воспроизводился в этой итерации.
@@ -85,4 +87,4 @@ DEMO_HARDENING / LIMITED_VALIDATION
 
 ## Last stable checkpoint
 
-eb7325c — fix: make reducer own decision correctness, latest static-verified checkpoint.
+eed7b14 — fix: harden coastal mission state flow; latest static-verified checkpoint before DZZ clarity polish.

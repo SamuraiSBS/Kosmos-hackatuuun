@@ -1,10 +1,10 @@
 # DEMO_FLOW — фактический демонстрационный путь
 
-Срез: 2026-09-04 после CASE REALIGNMENT, DZZ-to-field polish и SVG scan layer. Исторический EdgeCore walkthrough сохранён в Git, но в текущем окружении browser/mobile recheck ограничен отсутствием runner.
+Срез: 2026-09-04 после CASE REALIGNMENT, reducer hardening, DZZ clarity polish и SVG scan layer. Исторический EdgeCore walkthrough сохранён в Git, но в текущем окружении browser/mobile recheck ограничен отсутствием runner.
 
 ## Main path
 
-1. **Hook / Space** — ЧИСТЫЙ БЕРЕГ, наблюдение береговой линии по ДЗЗ, короткий orbital dive; можно пропустить.
+1. **Hook / Space** — ЧИСТЫЙ БЕРЕГ, дистанционное зондирование Земли (ДЗЗ) показывает берег сверху, короткий orbital dive; можно пропустить.
 2. **Coast reveal** — карта сектора с водой, песчаным берегом, полевым штабом, станцией ДЗЗ и тремя зонами.
 3. **Mission onboarding** — помощник сообщает о сигнале скопления мусора у северной линии.
 4. **Problem discovery** — ЗОНА A подсвечена маркером СИГНАЛ МУСОРА; tap открывает карточку.

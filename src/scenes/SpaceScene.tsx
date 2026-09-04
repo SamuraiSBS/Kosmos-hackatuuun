@@ -52,7 +52,7 @@ export function SpaceScene({ onComplete, onSkip }: SpaceSceneProps) {
       <div className="stars" aria-hidden="true">
         {stars.map((star, index) => <span key={index} style={{ left: star.left, top: star.top, width: star.size, height: star.size, animationDelay: star.delay }} />)}
       </div>
-      <div className="space-label"><span className="eyebrow">ORBITAL EARTH OBSERVATION</span><h1>ЧИСТЫЙ<br /><em>БЕРЕГ</em></h1><p>Наблюдение береговой линии по данным ДЗЗ</p></div>
+      <div className="space-label"><span className="eyebrow">ORBITAL EARTH OBSERVATION</span><h1>ЧИСТЫЙ<br /><em>БЕРЕГ</em></h1><p>Дистанционное зондирование Земли (ДЗЗ) помогает увидеть берег сверху.</p></div>
       <div className="orbit-scene" aria-hidden="true">
         <div className="earth-glow" />
         <div className="earth"><span className="earth-land land-one" /><span className="earth-land land-two" /><span className="earth-land land-three" /><span className="earth-cloud cloud-earth-one" /><span className="earth-cloud cloud-earth-two" /></div>

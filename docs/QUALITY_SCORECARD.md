@@ -1,6 +1,6 @@
 # QUALITY_SCORECARD — живой scorecard
 
-Срез: 2026-09-04 после DZZ-to-field polish и SVG scan layer. Browser/mobile recheck и console gate намеренно отмечены отдельно.
+Срез: 2026-09-04 после reducer hardening и DZZ clarity polish. Browser/mobile recheck и console gate намеренно отмечены отдельно.
 
 ## Current phase
 
@@ -20,12 +20,12 @@ DEMO_HARDENING / LIMITED_VALIDATION
 | Game Engagement | 7 | Problem → observation → decision → consequence loop works in reducer and UI code. | Only one mission. |
 | First-time Clarity | 9 | Copy, guards и observation path формируют explicit signal → DZZ layer → field action path; historical EdgeCore evidence сохранена. | Current browser и независимый jury sample. |
 | Mobile UX | 8 | В коде учтены 320–500px layout и safe-area; текущий runner не позволяет повторить viewport sweep. | Recheck 320/360/390/430/500×844 и real-device профилирование. |
-| Technical Stability | 9 | Typecheck, 9/9 unit tests, build и static guards pass; historical EdgeCore flow evidence сохранена. | Current browser и отдельный CDP console stream недоступны. |
+| Technical Stability | 9 | Typecheck, 12/12 unit tests, build и reducer bypass guards pass; historical EdgeCore flow evidence сохранена. | Current browser и отдельный CDP console stream недоступны. |
 | Performance | 8 | No new dependency; CSS/DOM placeholders and short timers only. | No device profiling. |
 
 ## Hard gates
 
-- Critical bugs: 0 found in static checks and historical EdgeCore walkthrough; current browser recheck unavailable.
+- Critical bugs: 0 found in static checks and historical EdgeCore walkthrough; reducer bypass regressions are covered; current browser recheck unavailable.
 - Main demo flow: LIMITED — static flow guards pass, but browser walkthrough is not reproducible in current environment.
 - Production build: PASS.
 - Console/runtime errors: LIMITED — current app stages не открыты browser runner'ом, CDP console stream unavailable.
