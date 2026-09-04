@@ -289,6 +289,7 @@ em { color: var(--yellow); font-style: normal; }
 .result-scene .educational-payoff + .full-button { margin-top: 16px; }
 
 @media (max-width: 500px) {
+  .space-status { right: 146px; max-width: calc(100% - 171px); line-height: 1.35; }
   .result-scene { padding-top: calc(24px + env(safe-area-inset-top)); padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
   .result-icon { margin-top: 12px; }
   .result-scene h1 { margin-top: 12px; }
@@ -299,5 +300,5 @@ em { color: var(--yellow); font-style: normal; }
   .result-reward { margin-top: 12px; }
   .educational-payoff { margin-top: 9px; padding: 8px 10px; }
   .project-link { min-height: 42px; margin-top: 7px; }
-  .result-scene .full-button, .result-scene .educational-payoff + .full-button { margin-top: 12px; }
+  .result-scene .full-button, .result-scene .educational-payoff + .full-button { margin-top: 5px; }
 }
