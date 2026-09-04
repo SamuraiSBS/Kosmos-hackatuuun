@@ -1,6 +1,6 @@
 # STATE_OF_PROJECT — фактическое состояние
 
-Обновлено: 2026-09-04 19:39 (MSK), после browser/CDP walkthrough и mobile polish.
+Обновлено: 2026-09-04 20:05 (MSK), после targeted security update и повторной статической проверки.
 
 ## Phase
 
@@ -41,6 +41,7 @@ FREEZE
 - Browser/mobile walkthrough фактически пройден: Space → intro → зона A → sheet → скан → обязательный слой ДЗЗ → неверное решение без dead end → правильное решение → result → возврат на карту.
 - Responsive sweep 320/360/390/430/500px не выявил горизонтального overflow; 390px result CTA заканчивается в пределах viewport после mobile polish.
 - npm run lint, npm test (15/15) и npm run build проходят.
+- Security audit: `npm audit` и `npm audit --omit=dev` проходят с 0 уязвимостей; `vitest` обновлён до 3.2.7.
 
 ## What is broken / risky
 
@@ -72,6 +73,7 @@ FREEZE
 - Typecheck/lint: PASS (npm run lint).
 - Unit tests: PASS, 15/15 (npm test -- --run).
 - Production build: PASS (npm run build).
+- Dependency audit: PASS — `npm audit` и `npm audit --omit=dev`, 0 vulnerabilities.
 - Dev server: PASS, Vite отдаёт HTTP 200 на локальном порту.
 - Browser flow: PASS — Brave headless/CDP, 390×844, critical path и wrong-choice recovery пройдены.
 - Primary viewport: PASS — 390×844 CSS viewport открыт и визуально проверен на Space, analysis и result.

@@ -44,4 +44,5 @@
 - [x] Result-заголовок рендерит JSX корректно; на 320–500px payoff и CTA не уходят за первый экран.
 - [x] Browser critical flow: Brave headless/CDP на 390×844; wrong-choice recovery, result, return и storage cleanup подтверждены.
 - [x] Документация bootstrap-аудита заполнена фактическими результатами.
+- [x] Critical dev dependency audit: Vitest UI advisory устранён обновлением до 3.2.7; production audit чистый.
 - [x] Backend, auth, multiplayer, open world и feature creep отклонены: не видны в коротком demo и не усиливают кейс.

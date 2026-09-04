@@ -8,6 +8,7 @@
 - [x] Lint проходит, если настроен.
 - [x] Unit/integration tests проходят, если есть.
 - [x] Production build проходит.
+- [x] Dependency audit проходит: `npm audit` и `npm audit --omit=dev` показывают 0 vulnerabilities.
 - [x] Нет broken imports.
 - [x] Нет очевидных dead/unreachable flow states.
 

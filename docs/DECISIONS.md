@@ -64,6 +64,18 @@
 
 **Revisit when:** появится второй тип загрязнения или реальный raster, для которого понадобится отдельная легенда.
 
+## 2026-09-04 — remediate Vitest UI server advisory
+
+**Decision:** обновить прямую dev-зависимость `vitest` с `^3.2.4` до `^3.2.7`; не запускать общий `npm audit fix`.
+
+**Why:** локальный audit обнаружил critical advisory [GHSA-5xrq-8626-4rwp](https://github.com/vitest-dev/vitest/security/advisories/GHSA-5xrq-8626-4rwp), затрагивающий Windows при включённом Vitest UI/Browser Mode. Это не production-риск для собранного приложения, но зависимость должна быть исправлена до freeze.
+
+**Evidence:** targeted `npm install --save-dev vitest@3.2.7`; `npm audit` и `npm audit --omit=dev` — 0 vulnerabilities; 15/15 tests, lint и build проходят.
+
+**Alternatives rejected:** общий `npm audit fix` — лишние изменения за пределами найденной dev-зависимости; подключение Vitest UI — не требуется для frozen demo-flow.
+
+**Revisit when:** не включать Vitest UI на сетевом host без явной access policy; повторить audit при следующем major update.
+
 ## 2026-09-04 — preserve guarded decision back navigation
 
 **Decision:** разрешить `SET_SCENE: ANALYSIS` только из `DECISION` при завершённом анализе, раскрытом сигнале и выбранной зоне; прямой переход из других сцен по-прежнему отклонять.

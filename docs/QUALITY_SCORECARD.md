@@ -1,6 +1,6 @@
 # QUALITY_SCORECARD — живой scorecard
 
-Срез: 2026-09-04 после browser/CDP walkthrough, favicon fix и mobile polish.
+Срез: 2026-09-04 после browser/CDP walkthrough, mobile polish и targeted security update.
 
 ## Current phase
 
@@ -20,7 +20,7 @@ FREEZE
 | Game Engagement | 7 | Problem → observation → decision → consequence loop works in reducer and UI code. | Only one mission. |
 | First-time Clarity | 9 | Copy, guards, observation path и current browser walkthrough формируют explicit signal → DZZ layer → field action path. | Optional jury sample. |
 | Mobile UX | 9 | 390×844 walkthrough и sweep 320/360/390/430/500px: горизонтальный overflow не обнаружен, CTA и bottom navigation доступны. | Smoke на конкретном устройстве защиты. |
-| Technical Stability | 9 | Typecheck, 15/15 unit tests, build, reducer bypass guards, safe persistence hydration и CDP console gate pass; HTTP >=400 не найдено. | Отдельный real-device performance profile не выполнялся. |
+| Technical Stability | 9 | Typecheck, 15/15 unit tests, build, reducer bypass guards, safe persistence hydration, CDP console gate и npm audit pass; HTTP >=400 не найдено. | Отдельный real-device performance profile не выполнялся. |
 | Performance | 8 | No new dependency; CSS/DOM placeholders and short timers only. | No device profiling. |
 
 ## Hard gates
@@ -28,6 +28,7 @@ FREEZE
 - Critical bugs: 0 found in static checks and current Brave headless/CDP walkthrough; reducer bypass, explicit observation reveal, wrong-choice recovery and malformed-persistence regressions are covered.
 - Main demo flow: PASS — Space → intro → map → sheet → scan → reveal → decision → result → return.
 - Production build: PASS.
+- Dependency audit: PASS — `npm audit` и `npm audit --omit=dev`, 0 vulnerabilities после обновления Vitest.
 - Console/runtime errors: PASS — 0 Runtime exceptions, 0 app console errors and 0 HTTP responses >=400.
 - Tested primary viewport: PASS — 390×844 открыт и визуально просмотрен.
 - Regression status: PASS — static checks, current browser flow, responsive sweep and screenshots pass.
