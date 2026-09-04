@@ -90,4 +90,4 @@ FREEZE
 
 ## Last stable checkpoint
 
-ca28cd7 — polish: close browser console and mobile gates; latest freeze checkpoint.
+c309433 — freeze: lock browser-verified coastal demo; latest freeze checkpoint.
