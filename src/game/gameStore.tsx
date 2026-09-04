@@ -1,11 +1,29 @@
 import { createContext, useContext, useEffect, useReducer, type ReactNode } from 'react'
 import { gameReducer, initialGameState } from './gameReducer'
-import type { GameAction, GameState } from './types'
+import type { GameAction, GameState, ZoneId, ZoneState } from './types'
 
 export { applyResolvedZone, gameReducer, initialGameState } from './gameReducer'
 
 const STORAGE_KEY = 'clean-coast-edu-state'
+const ZONE_IDS: ZoneId[] = ['zone-north', 'zone-west', 'zone-east']
+const ZONE_STATES: ZoneState[] = ['clear', 'watch', 'polluted', 'restored']
 export const isCompletedRun = (state: Partial<GameState>) => Boolean(state.missionCompleted || state.resultApplied)
+
+const isZoneGrid = (value: unknown): value is ZoneState[][] =>
+  Array.isArray(value) &&
+  value.length === 5 &&
+  value.every((row) => Array.isArray(row) && row.length === 5 && row.every((tile) => ZONE_STATES.includes(tile as ZoneState)))
+
+const hydrateZoneStates = (saved: unknown): GameState['zoneStates'] => {
+  const source = saved && typeof saved === 'object' ? saved as Partial<Record<ZoneId, unknown>> : {}
+
+  return Object.fromEntries(
+    ZONE_IDS.map((zoneId) => {
+      const grid = isZoneGrid(source[zoneId]) ? source[zoneId].map((row) => [...row]) : initialGameState.zoneStates[zoneId]
+      return [zoneId, grid]
+    }),
+  ) as GameState['zoneStates']
+}
 
 export const loadGameState = (): GameState => {
   if (typeof window === 'undefined') return initialGameState
@@ -21,7 +39,7 @@ export const loadGameState = (): GameState => {
       ...initialGameState,
       ...parsed,
       scene: parsed.introCompleted ? 'MAP' : 'LOADING',
-      zoneStates: parsed.zoneStates ?? initialGameState.zoneStates,
+      zoneStates: hydrateZoneStates(parsed.zoneStates),
     }
   } catch {
     return initialGameState

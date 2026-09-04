@@ -35,8 +35,9 @@ DEMO_HARDENING / LIMITED_VALIDATION
 - Первое объяснение раскрывает ДЗЗ как «дистанционное зондирование Земли» в orbital hook, onboarding и карточке слоя; подсказка карты ведёт к сигналу мусора.
 - Result-заголовок исправлен на JSX; компактный mobile layout показывает payoff, официальный CTA и возврат на 320–500px.
 - Незавершённое состояние сохраняется в localStorage для безопасного refresh; завершённый demo-run не гидратируется и очищает storage, поэтому новый заход начинается с чистой экспедиции; debug mode скрыт без ?debug=true.
+- Гидратация localStorage нормализует каждую береговую зону как безопасную 5×5-сетку и откатывает повреждённые/устаревшие зоны к исходному состоянию.
 - В репозитории сохранена историческая запись EdgeCore walkthrough для map/sheet/analysis/decision/result; в текущем окружении этот runner недоступен, поэтому browser/mobile acceptance здесь не переобъявляется завершённой.
-- npm run lint, npm test (12/12) и npm run build проходят.
+- npm run lint, npm test (14/14) и npm run build проходят.
 
 ## What is broken / risky
 

@@ -80,6 +80,14 @@
 **Alternatives rejected:** оставить только аббревиатуру — повышает риск непонимания; вынести объяснение в отдельный экран — ухудшает pacing.
 **Revisit when:** появится browser/mobile walkthrough с фактическим readability/overflow evidence.
 
+## 2026-09-04 — безопасная гидратация береговых зон
+
+**Decision:** при чтении `clean-coast-edu-state` валидировать каждую зону как 5×5-сетку допустимых `ZoneState`; повреждённую или устаревшую зону заменять исходной, не отклоняя весь незавершённый run.
+**Why:** refresh — часть короткой демонстрации, а неполный persisted payload не должен приводить к crash карты или требовать ручного reset.
+**Evidence:** persistence tests cover incomplete save, completed-run cleanup and malformed zone payload; lint, 14/14 tests and build pass.
+**Alternatives rejected:** принимать payload целиком — риск runtime crash; удалять весь прогресс при одной плохой зоне — хуже для незавершённого demo.
+**Revisit when:** появится versioned persistence schema или серверный профиль пользователя.
+
 ## 2026-09-04 — educational shoreline raster fallback
 
 **Decision:** добавить лёгкий стилизованный SVG-растр береговой линии как базовый слой scanner viewport через assetRegistry, оставив цветные ячейки отдельным интерактивным сигналом.
